@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title><%=pageTitle%></title>
+    <link href="<%=host+'/'+pageName%>.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+</head>
+<body>
+    <div id="app"><%-content-%></div>
+    <script>
+      window.__STATE__ = '<%-JSON.stringify(initialState)-%>';
+    </script>
+    <script type="text/javascript" src="<%=host+'/'+pageName%>.js"></script>
+</body>
+</html>
