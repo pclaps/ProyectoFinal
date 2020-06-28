@@ -99,7 +99,7 @@ class nuevousuario extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         alert('nuevo usuario');
-        fetch('/api/Usuario', {
+        fetch('/api/usuario', {
             method: 'POST',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
             body: JSON.stringify({
@@ -136,6 +136,7 @@ class nuevousuario extends React.Component {
                
                 <Segment inverted textAlign="center">Registro de Usuarios</Segment>
                 <Link to={`/to-do-list/`}>Ir al listado</Link>               
+                <Link to={`/lista-usuarios/`}>Ir al listado de Usuarios</Link>       
                 <Form onSubmit={this.handleSubmit} className="flex-container2">     
                     <Form.Field required>
                           <label>Correo electrónico</label>                          

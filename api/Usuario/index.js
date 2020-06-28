@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
-
+console.log('API--Usuario...')
 /*
 const getUsuario = (req, res, next) => {
 
@@ -21,17 +21,25 @@ const validateParams = (req, res, next) => {
         next();
     }
 };
-const getAllUsuario=(req,res)=>{   
+
+//const getAllUsuario=(req,res)=>{   
+router.get('/', (req, res, next) => {
+    console.log('getAllUsuario');
     Usuario.getUsuarios()
-    .then(function(Usuario){       
-        res.json(Usuario);
+    .then(function(usuarios){       
+        res.json(usuarios);
     })
     .catch(function(err){  
         console.log(err);
         console.log('ocurrio un error en getAllUsuario');
         res.json(err);
     })
-};
+});
+//};
+
+//router.get('/', getAllUsuario);
+
+
 //Obtengo un Tipo de Actividad por ID
 const getUsuario=(req,res)=>{    
     const { id } = req.params;     
@@ -45,6 +53,9 @@ const getUsuario=(req,res)=>{
         res.json(err);
     })
 };
+router.get('/:id', getUsuario);
+
+
 //Guardo un Tipo de Actividad
 
 /*
@@ -74,7 +85,7 @@ router.post('/', (req, res, next) => {
     })
      .catch(function(err){  
         console.log(err)    ;
-        console.log('ocurrio un error en saveUsuario');
+        console.log('ocurrio un error en al guardar usuario'+ 'codError : '+ err.errno );
         res.json(err);
     })
 });

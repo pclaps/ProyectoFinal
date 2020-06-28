@@ -2,15 +2,15 @@ const connection = require('../services/db-connection');
 const bcrypt = require('bcrypt');
 //Defino las funcionalidades para la clase 
 const GETALL_USUARIO ="SELECT * FROM usuario ";
-const GET_USUARIO_BY_ID ="SELECT * FROM usuario WHERE IDusuario = ?";
+const GET_USUARIO_BY_ID ="SELECT * FROM usuario WHERE idUsuario = ?";
 const SAVE_USUARIO ="INSERT INTO usuario SET ?";
-const DELETE_USUARIO = "DELETE FROM usuario WHERE idusuario = ?";
-const UPDATE_USUARIO = "UPDATE usuario SET ?  WHERE idusuario = ?";
+const DELETE_USUARIO = "DELETE FROM usuario WHERE idUsuario = ?";
+const UPDATE_USUARIO = "UPDATE usuario SET ?  WHERE idUsuario = ?";
 //
-
-class usuario {
-    constructor (idusuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor){       
-        this.idusuario = idusuario,
+//
+class Usuario {
+    constructor (idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor){       
+        this.idUsuario = idUsuario,
         this.clave = clave,
         this.email = email,
         this.nombreUsuario = nombreUsuario,
@@ -27,16 +27,19 @@ class usuario {
     static getUsuarios (){
         return new Promise(function(resolve, reject){
             connection.query(GETALL_USUARIO,function(error,results){
-                if (error){
-                
+                if (error){                
                     reject(error);
                 } else {                                     
                     console.log(results);
-                
-                    resolve(results.map((usuario) => {
-                        const { idusuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = usuario;
-                        return new usuario(idusuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor);
-                    }));
+                    try {
+                        resolve(results.map((usuario) => {
+                            const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = usuario;
+                            return new Usuario(idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor);
+                        }));
+                     } catch(error) {
+                        // console.log(error);
+                          reject(error);
+                         }
                 }
             });
         })
@@ -49,8 +52,8 @@ class usuario {
                     console.log(error);
                     reject(error);
                 } else {    
-                    const { idusuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = results[0];
-                    return new usuario(idusuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor);                                   
+                    const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = results[0];
+                    return new usuario(idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor);                                   
                 }
             });
         })
@@ -112,5 +115,5 @@ class usuario {
     }
 }
 
-module.exports = usuario;
+module.exports = Usuario;
 
