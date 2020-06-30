@@ -6,6 +6,7 @@ const Task = require('../../../models/task');
 const View = require('./view');
 
 // https://www.digitalocean.com/community/tutorials/react-react-router-ssr
+console.log('pages-to-do-list--index');
 
 router.get('/*', (req, res, next) => {
     const initialState = {};

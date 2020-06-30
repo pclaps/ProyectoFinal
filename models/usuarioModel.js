@@ -7,6 +7,7 @@ const SAVE_USUARIO ="INSERT INTO usuario SET ?";
 const DELETE_USUARIO = "DELETE FROM usuario WHERE idUsuario = ?";
 const UPDATE_USUARIO = "UPDATE usuario SET ?  WHERE idUsuario = ?";
 //
+console.log('UsuariosModel');
 //
 class Usuario {
     constructor (idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor){       
@@ -30,7 +31,7 @@ class Usuario {
                 if (error){                
                     reject(error);
                 } else {                                     
-                    console.log(results);
+                   console.log('results getUsuarios');
                     try {
                         resolve(results.map((usuario) => {
                             const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = usuario;

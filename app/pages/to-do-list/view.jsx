@@ -6,6 +6,8 @@ const NewTask = require ('../../components/new-task')
 const TipoActividad = require('../../components/nuevaTipoAct');
 const Usuario = require('../../components/nuevousuario');
 
+console.log('page-View-ToDoListPage');
+
 class ToDoListPage extends React.Component {
     render() {
         const { tasks } = this.props.initialState;       

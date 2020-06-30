@@ -1,6 +1,7 @@
 const React = require('react');
 const {Link} = require ('react-router-dom');
 console.log(' Componente Task');
+
 class Task extends React.Component {
   render() {
     return (

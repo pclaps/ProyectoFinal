@@ -1,5 +1,5 @@
 const React = require('react');
-const Usuario = require('../nuevousuario');
+const Usuario = require('../Usuario');
 const {Link} = require ('react-router-dom');
 
 console.log(' componente listaUsuario');
@@ -17,15 +17,15 @@ class ListaUsuario extends React.Component {
     componentDidMount() {
         fetch(`/api/usuario/`)
             .then(res => res.json()).then((data) =>{
-                console.log("Comp ListaUsuario: "+data);
+                console.log("Comp ListaUsuario: ");
             this.setState({
-                usuarios: data.usuarios,
+                usuarios: data.listUsuarios,
                 loading: false,
                 error: false,
             });
-        })
+            })
             .catch((err) => {
-                console.error(err);
+                console.error('fallo fetch');
                 this.setState({
                     usuarios: null,
                     loading: false,
@@ -42,19 +42,19 @@ class ListaUsuario extends React.Component {
         return (
             <div>
                 <h1>Listado de Usuarios</h1>
-                <div className="flex-container"> 
+                <div > 
                                                
                     <Link to={`/lista-usuarios/nuevousuario`}>Crear nuevo Usuario</Link>      
                 </div>
-                
-                <ul >
+                <ul>
                     {
                         usuarios.map(usuario => (
-                            <h1> {usuario.idUsuario} </h1> 
+                            <Usuario key={usuario.idUsuario} idUsuario={usuario.idUsuario} nombreUsuario ={usuario.nombreUsuario} email={usuario.email} />
                         ))
                     }
                 </ul>
             </div>
+
         );
     }
 };

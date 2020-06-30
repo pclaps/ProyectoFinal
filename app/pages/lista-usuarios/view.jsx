@@ -2,7 +2,7 @@ const React = require('react');
 const { Route } = require('react-router-dom');
 const Usuario = require('../../components/nuevousuario');
 const ListaUsuarios = require('../../components/lista-usuarios');
-S
+
 console.log('ListaUsuariosPage-view');
 
 class ListaUsuariosPage extends React.Component {

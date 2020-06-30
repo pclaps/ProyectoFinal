@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
-console.log('API--Usuario...')
+console.log('API--Usuario...');
 /*
 const getUsuario = (req, res, next) => {
 
@@ -26,8 +26,8 @@ const validateParams = (req, res, next) => {
 router.get('/', (req, res, next) => {
     console.log('getAllUsuario');
     Usuario.getUsuarios()
-    .then(function(usuarios){       
-        res.json(usuarios);
+    .then(listUsuarios =>{   
+        res.json({listUsuarios});
     })
     .catch(function(err){  
         console.log(err);

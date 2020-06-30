@@ -3,7 +3,10 @@ const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
 const { Button,Form, Segment } = require ('semantic-ui-react');
 
-class Actividad extends React.Component {
+
+///FORMULARIO DE NUEVA ACTIVIDAD
+//CAMBIAR YA QUE TIENE TODO DE USUARIO
+class NuevaActividad extends React.Component {
 
     constructor(props) {
         super(props);
@@ -170,4 +173,4 @@ class Actividad extends React.Component {
     }
 };
 
-module.exports = Actividad;
+module.exports = NuevaActividad;

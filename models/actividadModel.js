@@ -1,9 +1,10 @@
-const connection = require('../database');
+const connection = require('../services/db-connection');
 //Defino las funcionalidades para la clase 
 const GET_ACTIVIDADES_BY_ACTIVIDAD ="SELECT * FROM ACTIVIDAD WHERE name = ?";
 //const SAVE_ACTIVIDAD ="INSERT INTO ACTIVIDAD set name=?,description=?,image_id=?,password=?,usuario=?";
 const SAVE_ACTIVIDAD ="INSERT INTO ACTIVIDAD set ?";
 const DELETE_ACTIVIDADES = "DELETE * FROM ACTIVIDAD WHERE name = ?";
+const GET_ACTIVIDADES_BY_PRV = "SELECT * FROM ACTIVIDAD WHERE IdProveedor =?"
 //console.log(GET_ACTIVIDADES_BY_ACTIVIDAD);
 
 class ACTIVIDAD {

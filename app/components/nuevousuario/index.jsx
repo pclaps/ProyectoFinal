@@ -5,7 +5,7 @@ const { Button,Form, Segment } = require ('semantic-ui-react');
 
 //si importo un modelo deja de andar
 //const usuario = require('../../../models/usuarioModel');
-
+console.log('Componente nuevoUsuarios');
 const options = [
     { key: 'a', text: 'Administrador', value: 'Admin' },
     { key: 'e', text: 'Empleado', value: 'empleado' },
@@ -85,6 +85,7 @@ class nuevousuario extends React.Component {
     }
 
     handleRolChange(event) {
+        console.log(event.target.value);
         this.setState({
             rol: event.target.value
         });

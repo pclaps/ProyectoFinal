@@ -2,18 +2,18 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const { BrowserRouter } = require('react-router-dom');
 
-const ToDoListPage = require('../pages/to-do-list/view');
-const styles = require('../pages/to-do-list/style.scss');
+const ListaActividadesPage = require('../pages/lista-actividades/view');
+const styles = require('../pages/lista-actividades/style.scss');
 
 const initialState = JSON.parse(window.__STATE__);
 
 delete window.__STATE__;
-console.log('Client-ToDoListPage');
+
+console.log('ListaActividadesPage-client');
+
 ReactDOM/ReactDOM.hydrate(
     <BrowserRouter>
-        <ToDoListPage initialState={initialState}/>
+        <ListaActividadesPage initialState={initialState}/>
     </BrowserRouter>,
     document.getElementById('app')
 );
-
-// ReactDOM.hydrate(<ToDoListPage initialState={initialState}/>, document.getElementById('app'));

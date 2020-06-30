@@ -13,7 +13,7 @@ class Proveedor {
         this.direccion = direccion
     }
 
-    static getTodasProv (){
+    static getProveedores (){
         return new Promise(function(resolve, reject){
             connection.query(GETALL_PROVEEDOR,function(error,results){
                 if (error){
@@ -31,7 +31,7 @@ class Proveedor {
         })
     }
 
-    static getUnaProv (id){
+    static getProveedorId (id){
         return new Promise(function(resolve, reject){
             connection.query(GET_PROVEEDOR_BY_ID,[id],function(error,results){
                 if (error){
