@@ -5,6 +5,7 @@ const TaskDetail = require ('../../components/task-details');
 const NewTask = require ('../../components/new-task')
 const TipoActividad = require('../../components/nuevaTipoAct');
 const Usuario = require('../../components/nuevousuario');
+const Proveedor = require('../../components/Proveedor/ProveedorForm');
 
 console.log('page-View-ToDoListPage');
 
@@ -36,6 +37,11 @@ class ToDoListPage extends React.Component {
                     exact
                     path="/to-do-list/nuevousuario"
                     render={(props) => <Usuario {...props} tasks={tasks}/>}
+                />
+                 <Route
+                    exact
+                    path="/lista-proveedores/proveedor"
+                    render={(props) => <Proveedor {...props} proveedores={proveedores}/>}
                 />
             </React.Fragment>
         );

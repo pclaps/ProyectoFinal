@@ -1,11 +1,11 @@
 const React = require('react');
-const Usuario = require('../Usuario');
+//const Proveedor = require('../Proveedor/Proveedor');
 const {Link} = require ('react-router-dom');
-const {Segment} = require('semantic-ui-react');
+const Proveedor = require('../../../models/ProveedorModel');
 
-console.log(' componente listaUsuario');
-//        <h1>Listado de Usuarios</h1>
-class ListaUsuario extends React.Component {
+console.log(' componente ListaProveedores');
+
+class ListaProveedores extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,11 +16,11 @@ class ListaUsuario extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`/api/usuario/`)
+        fetch(`/api/proveedor/`)
             .then(res => res.json()).then((data) =>{
-                console.log("Comp ListaUsuario: ");
+                console.log("fetch ListaProveedores: ");
             this.setState({
-                usuarios: data.listUsuarios,
+                proveedores: data.listProv,
                 loading: false,
                 error: false,
             });
@@ -28,7 +28,7 @@ class ListaUsuario extends React.Component {
             .catch((err) => {
                 console.error('fallo fetch');
                 this.setState({
-                    usuarios: null,
+                    proveedores: null,
                     loading: false,
                     error: true,
                 });
@@ -36,22 +36,21 @@ class ListaUsuario extends React.Component {
     }
 
     render() {
-        const usuarios  = this.state.usuarios;
+        const proveedores  = this.state.proveedores;
         if (this.state.loading) {
-            return <div>Cargando Usuarios ...</div>
+            return <div>Cargando Proveedores ...</div>
         }
         return (
             <div>
-                <Segment inverted textAlign="center">Listado de Usuarios</Segment>
-        
+                <h1>Listado de Proveedores</h1>
                 <div > 
                                                
-                    <Link to={`/lista-usuarios/nuevousuario`}>Crear nuevo Usuario</Link>      
+                    <Link to={`/lista-proveedores/nuevoproveedor`}>Crear nuevo Proveedor</Link>      
                 </div>
                 <ul>
                     {
-                        usuarios.map(usuario => (
-                            <Usuario key={usuario.idUsuario} idUsuario={usuario.idUsuario} nombreUsuario ={usuario.nombreUsuario} email={usuario.email} />
+                        proveedores.map(proveedor => (
+                            <Proveedor key={proveedor.idProveedor} idProveedor={proveedor.idProveedor} descripcion ={proveedor.descripcion} direccion={proveedor.direccion} />
                         ))
                     }
                 </ul>
@@ -60,5 +59,4 @@ class ListaUsuario extends React.Component {
         );
     }
 };
-// <Usuario key={usuario.idUsuario} idUsuario={usuario.idUsuario} nombreUsuario={usuario.nombreUsuario}/>
-module.exports = ListaUsuario;
+module.exports = ListaProveedores;

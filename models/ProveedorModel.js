@@ -1,4 +1,4 @@
-const connection = require('../database');
+const connection = require('../services/db-connection');
 //Defino las funcionalidades para la clase 
 const GETALL_PROVEEDOR ="SELECT * FROM Proveedor ";
 const GET_PROVEEDOR_BY_ID ="SELECT * FROM Proveedor WHERE IDProveedor = ?";

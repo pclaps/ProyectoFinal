@@ -4,7 +4,7 @@ const {Link} = require ('react-router-dom');
 
 console.log(' componente listaActividades');
 
-class listaActividades extends React.Component {
+class ListaActividades extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +15,7 @@ class listaActividades extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`/api/actividad/`)
+        fetch(`/api/actividad`)
             .then(res => res.json()).then((data) =>{              
             this.setState({
                 actividades: data.listActividades,

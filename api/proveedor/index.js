@@ -8,6 +8,7 @@ router.post('/',saveProveedor);
 router.delete('/:id', deleteProveedor);
 router.post('/update/:id',updateProveedor);
 */
+console.log('PROVEEDOR API');
 const Proveedor = require('../../models/ProveedorModel');
 
 
@@ -22,7 +23,10 @@ const validateParams = (req, res, next) => {
         next();
     }
 };
-const getProveedores=(req,res)=>{   
+
+//Obtengo todos los proveedores del Sistema
+const getProveedores=(req,res)=>{  
+    console.log('getProveedores') ;
     Proveedor.getProveedores()
     .then(function(proveedor){       
         res.json(proveedor);

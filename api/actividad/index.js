@@ -13,6 +13,7 @@ const validateParams = (req, res, next) => {
         next();
     }
 };
+
 const getAllActividad=(req,res)=>{   
     console.log('getAllActividad router');
     Actividad.getTodasActividad()
@@ -25,6 +26,9 @@ const getAllActividad=(req,res)=>{
         res.json(err);
     })
 };
+
+//router.get('/', (req, res, next) => {}
+
 //Obtengo un Tipo de Actividad por ID
 const getActividad=(req,res)=>{    
     const { id } = req.params;     

@@ -17,7 +17,7 @@ class ListaUsuariosPage extends React.Component {
                 />
                    <Route
                     exact
-                    path="/lista-usuarios/usuario"
+                    path="/lista-usuarios/nuevousuario"
                     render={(props) => <Usuario {...props} usuarios={usuarios}/>}
                 />
             </React.Fragment>
