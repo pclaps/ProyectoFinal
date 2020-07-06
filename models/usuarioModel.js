@@ -39,22 +39,37 @@ class Usuario {
                         }));
                      } catch(error) {
                         // console.log(error);
-                          reject(error);
-                         }
+                         /*  const error ={ success: false,
+                           msg : 'No existe registro',
+                        }*/
+                        reject(error);
+                       }
                 }
             });
         })
     }
 
     static getUsuarioID (id){
+        console.log(GET_USUARIO_BY_ID + id);
         return new Promise(function(resolve, reject){
             connection.query(GET_USUARIO_BY_ID,[id],function(error,results){
                 if (error){
-                    console.log(error);
+                    console.log('fallo');
+                    console.log('getUsuarioID BD: '+error);
                     reject(error);
-                } else {    
-                    const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = results[0];
-                    return new usuario(idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor);                                   
+                } else {                        
+                    if (results[0] == null)
+                    {
+                        console.log('undefined idUsuario'+ error);
+                        const error ={ success: false,
+                                       msg : 'No existe registro',
+                        }
+                        reject(error);
+                    }else{
+                            const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = results[0];
+                            return new Usuario(idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor);                                   
+                    }
+                    
                 }
             });
         })

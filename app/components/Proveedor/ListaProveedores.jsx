@@ -9,7 +9,7 @@ class ListaProveedores extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            usuarios: null,
+            proveedores: null,
             loading: true,
             error: false,
         };
@@ -18,9 +18,9 @@ class ListaProveedores extends React.Component {
     componentDidMount() {
         fetch(`/api/proveedor/`)
             .then(res => res.json()).then((data) =>{
-                console.log("fetch ListaProveedores: ");
+                console.log("fetch ListaProveedores: "+ data);
             this.setState({
-                proveedores: data.listProv,
+                proveedores: data.listProvs,
                 loading: false,
                 error: false,
             });

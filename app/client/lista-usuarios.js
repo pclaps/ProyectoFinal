@@ -16,5 +16,3 @@ ReactDOM/ReactDOM.hydrate(
     </BrowserRouter>,
     document.getElementById('app')
 );
-
-// ReactDOM.hydrate(<ToDoListPage initialState={initialState}/>, document.getElementById('app'));

@@ -4,7 +4,7 @@ const ToDoList = require('../../components/to-do-list');
 const TaskDetail = require ('../../components/task-details');
 const NewTask = require ('../../components/new-task')
 const TipoActividad = require('../../components/nuevaTipoAct');
-const Usuario = require('../../components/nuevousuario');
+const Usuario = require('../../components/nuevousuario/Usuario');
 const Proveedor = require('../../components/Proveedor/ProveedorForm');
 
 console.log('page-View-ToDoListPage');
@@ -17,7 +17,7 @@ class ToDoListPage extends React.Component {
                 <Route
                     path="/to-do-list/task/:id"
                     render={(props) => <TaskDetail {...props} id={props.match.params.id}/>}
-                />
+                />               
                 <Route
                     exact
                     path="/to-do-list"

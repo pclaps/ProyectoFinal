@@ -22,8 +22,7 @@ const validateParams = (req, res, next) => {
     }
 };
 
-//const getAllUsuario=(req,res)=>{   
-router.get('/', (req, res, next) => {
+const getAllUsuario=(req,res)=>{
     console.log('getAllUsuario');
     Usuario.getUsuarios()
     .then(listUsuarios =>{   
@@ -34,22 +33,22 @@ router.get('/', (req, res, next) => {
         console.log('ocurrio un error en getAllUsuario');
         res.json(err);
     })
-});
-//};
+}
 
-//router.get('/', getAllUsuario);
+router.get('/', getAllUsuario);
 
 
 //Obtengo un Tipo de Actividad por ID
 const getUsuario=(req,res)=>{    
     const { id } = req.params;     
+    console.log(id);
     Usuario.getUsuarioID(id)
     .then(function(Usuario){        
         res.json(Usuario);
     })
     .catch(function(err){  
-        console.log(err);
-        console.log('ocurrio un error en getUsuario');
+        console.log(err);        
+        console.log('ocurrio un error '+ err.msg);
         res.json(err);
     })
 };
@@ -104,6 +103,8 @@ const deleteUsuario=(req,res)=>{
     })
 }
 
+
+//router.post('/', (req, res, next) => {
 //para el post
 const updateUsuario=(req,res)=>{
 

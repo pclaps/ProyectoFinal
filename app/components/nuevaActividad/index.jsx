@@ -25,7 +25,7 @@ class NuevaActividad extends React.Component {
         this.handleApellidoChange = this.handleApellidoChange.bind(this);
         this.handleFecNacChange = this.handleFecNacChange.bind(this);
         this.handleTelefonoChange = this.handleTelefonoChange.bind(this);
-      //  this.handleRolChange = this.handleRolChange.bind(this);
+   
         this.handleDireccionChange = this.handleDireccionChange.bind(this);
         this.handleIdProveedorChange = this.handleIdProveedorChange.bind(this);       
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -81,7 +81,7 @@ class NuevaActividad extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         alert('nuevo usuario');
-        fetch('/api/Usuario', {
+        fetch('/api/suario', {
             method: 'POST',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
             body: JSON.stringify({

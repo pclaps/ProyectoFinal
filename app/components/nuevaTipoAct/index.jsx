@@ -40,7 +40,7 @@ class NuevaTipoAct extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        fetch('/api/TipoActividad', {
+        fetch('/api/tipoactividad', {
             method: 'POST',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
             body: JSON.stringify({
@@ -68,17 +68,6 @@ class NuevaTipoAct extends React.Component {
                 <h2 className="red-text">Crear Tipo de Actividad</h2>
                 <Link to={`/to-do-list/`}>Ir al listado</Link>
                 <Form onSubmit={this.handleSubmit} className="flex-container2">     
-                    <Form.Field>
-
-                          <label>First Name</label>
-                          <input placeholder='First Name' />
-                    </Form.Field>  
-                    <Form.Select
-                       fluid
-                       label='Gender'
-                       options={options}
-                       placeholder='Gender'
-                     />
                     <div>
                         Desc TipoActividad:
                         <input type="text" name="descripcion" value={this.state.descripcion} 
@@ -88,10 +77,7 @@ class NuevaTipoAct extends React.Component {
                         Imagen:
                         <input type="text" name="image" value={this.state.image} onChange={this.handleImageChange} />
                     </div>
-                    <Form.Field
-                      control={Checkbox}
-                       label='I agree to the Terms and Conditions'
-                    />
+                    
                     <Form.Button primary >Crear TipoActividad</Form.Button>                   
                     </Form>
             </div>
@@ -100,3 +86,19 @@ class NuevaTipoAct extends React.Component {
 };
 
 module.exports = NuevaTipoAct;
+/*
+      <Form.Field>
+                          <label>First Name</label>
+                          <input placeholder='First Name' />
+                    </Form.Field>  
+                    <Form.Select
+                       fluid
+                       label='Gender'
+                       options={options}
+                       placeholder='Gender'
+                     />
+                     
+                     <Form.Field
+                      control={Checkbox}
+                       label='I agree to the Terms and Conditions'
+                    />*/

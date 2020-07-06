@@ -1,7 +1,7 @@
 const React = require('react');
 const { Route } = require('react-router-dom');
 const Actividad = require('../../components/nuevaActividad');
-const ListaActividades = require('../../components/ListaActividades');
+const ListaActividades = require('../../components/Actividad/ListaActividades');
 
 console.log('ListaUsuariosPage-view');
 

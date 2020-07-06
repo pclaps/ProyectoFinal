@@ -43,9 +43,17 @@ class ACTIVIDAD {
                     console.log(error);
                     reject(error);
                 } else {                   
-                    const {idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor} = results[0];//aca tengo los nombres posta                    
-                    resolve(new ACTIVIDAD(idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor))
-                }
+                    if (results[0] == null)
+                    {
+                        console.log('undefined idUsuario'+ error);
+                        const error ={ success: false,
+                                       msg : 'No existe registro',
+                        }
+                        reject(error);
+                    }else{
+                         const {idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor} = results[0];//aca tengo los nombres posta                    
+                         resolve(new ACTIVIDAD(idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor))
+                }}
             });
         })
     }

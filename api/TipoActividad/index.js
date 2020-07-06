@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const TipoActividad = require('../../models/tipoActividadModel');
 
-
+//Valida Parametros
 const validateParams = (req, res, next) => {
     if(isNaN(req.params.id)) {
         res.status(404).send({
@@ -23,6 +23,9 @@ const getAllTipoActividad=(req,res)=>{
         res.json(err);
     })
 };
+//Obtengo los Tipos de Actividades
+router.get('/',getAllTipoActividad);
+
 //Obtengo un Tipo de Actividad por ID
 const getTipoActividad=(req,res)=>{    
     const { id } = req.params;     
@@ -36,6 +39,9 @@ const getTipoActividad=(req,res)=>{
         res.json(err);
     })
 };
+
+router.get('/:id',validateParams,getTipoActividad);
+
 //Guardo un Tipo de Actividad
 const saveTipoActividad=(req,res)=>{
     const {descripcion , imagen } = req.body;
@@ -66,6 +72,7 @@ const deleteTipoActividad=(req,res)=>{
         res.json(err);
     })
 }
+router.delete('/:id',validateParams,deleteTipoActividad);
 
 //para el post
 const updateTipoActividad=(req,res)=>{
@@ -94,5 +101,4 @@ module.exports = {
     saveTipoActividad,
     deleteTipoActividad,
     updateTipoActividad
-};
-*/
+};*/

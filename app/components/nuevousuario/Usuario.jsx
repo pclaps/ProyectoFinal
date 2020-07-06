@@ -1,7 +1,7 @@
 const React = require('react');
 const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
-const { Button,Form, Segment } = require ('semantic-ui-react');
+const { Button,Form, Segment,Dropdown } = require ('semantic-ui-react');
 
 //si importo un modelo deja de andar
 //const usuario = require('../../../models/usuarioModel');
@@ -12,7 +12,16 @@ const options = [
     { key: 'profesor', text: 'Profesor', value: 'Prof' },
     { key: 'cliente', text: 'Cliente', value: 'cliente' },
   ]
-
+/*
+   <Form.Select 
+                       fluid
+                       label='Rol de usuario'
+                       options={options}
+                       placeholder='Tipo de usuario'
+                       value={this.state.rol} 
+                       onChange={this.handleRolChange}
+                     />
+*/
 class nuevousuario extends React.Component {
 
     constructor(props) {
@@ -133,8 +142,7 @@ class nuevousuario extends React.Component {
             return <Redirect to="/to-do-list" />
         }
         return (
-            <div>
-               
+            <div>               
                 <Segment inverted textAlign="center">Registro de Usuarios</Segment>
                 <Link to={`/to-do-list/`}>Ir al listado</Link>               
                 <Link to={`/lista-usuarios/`}>Ir al listado de Usuarios</Link>       
@@ -180,15 +188,12 @@ class nuevousuario extends React.Component {
                           value={this.state.telefono} 
                           onChange={this.handleTelefonoChange}/>
                     </Form.Field> 
-                    <Form.Select
-                       fluid
-                       label='Rol de usuario'
-                       options={options}
-                       placeholder='Tipo de usuario'
-                       value={this.state.rol} 
-                       onChange={this.handleRolChange}
-                     />
-                   
+                    <Form.Field>
+                          <label>Rol de usuario</label>
+                          <input placeholder='Tipo de usuario'
+                          value={this.state.rol} 
+                          onChange={this.handleRolChange}  />             
+                     </Form.Field>
                     <Form.Field>
                           <label>Direccion</label>
                           <input placeholder='direccion' 
@@ -200,8 +205,9 @@ class nuevousuario extends React.Component {
                           <input placeholder='idProveedor' 
                           value={this.state.idProveedor} 
                           onChange={this.handleIdProveedorChange}/>
-                    </Form.Field>   
-                    <Form.Button primary >Crear Usuario</Form.Button>                   
+                    </Form.Field>    
+                    <Form.Button primary >Crear Usuario</Form.Button>   
+                    <Form.Button secondary >Update Usuario</Form.Button>                  
                 </Form>
             </div>
         );

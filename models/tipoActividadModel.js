@@ -37,10 +37,18 @@ class TIPOACTIVIDAD {
                 if (error){
                     console.log(error);
                     reject(error);
-                } else {                   
+                } else {  
+                    if (results[0] == null)
+                    {
+                        console.log('undefined idUsuario'+ error);
+                        const error ={ success: false,
+                                       msg : 'No existe registro',
+                        }
+                        reject(error);
+                    }else{                 
                     const {idTipoActividad,descripcion,imagen} = results[0];//aca tengo los nombres posta                    
                     resolve(new TIPOACTIVIDAD(idTipoActividad,descripcion,imagen));
-                }
+                }}
             });
         })
     }

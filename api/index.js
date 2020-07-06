@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const taskRouter = require('./tasks');
 const TipoActividadRouter = require('./tipoActividad');
+//const TipoActividadMW = require('../middlewares/tipoActividadMw');
 const UsuarioRouter = require('./usuario');
 const ActividadRouter = require('./actividad');
 const ProveedorRouter = require('./proveedor');
@@ -10,7 +11,8 @@ const { route } = require('./tasks');
 console.log('Ruteo de la API');
 
 router.use('/tasks', taskRouter);
-//router.use('/tipoactividad',TipoActividadRouter);
+router.use('/tipoactividad',TipoActividadRouter);
+//router.use('/tipoactividad',TipoActividadMW);
 router.use('/usuario',UsuarioRouter);
 router.use('/actividad',ActividadRouter);
 router.use('/proveedor',ProveedorRouter);

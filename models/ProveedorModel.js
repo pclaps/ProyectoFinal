@@ -37,10 +37,18 @@ class Proveedor {
                 if (error){
                     console.log(error);
                     reject(error);
-                } else {                   
-                    const {idProveedor,descripcion,direccion} = results[0];//aca tengo los nombres posta                    
-                    resolve(new Proveedor(idProveedor,descripcion,direccion));
-                }
+                } else { 
+                    if (results[0] == null)
+                    {
+                        console.log('undefined idUsuario'+ error);
+                        const error ={ success: false,
+                                       msg : 'No existe registro',
+                        }
+                        reject(error);
+                    }else{                  
+                         const {idProveedor,descripcion,direccion} = results[0];//aca tengo los nombres posta                    
+                         resolve(new Proveedor(idProveedor,descripcion,direccion));
+                }}
             });
         })
     }

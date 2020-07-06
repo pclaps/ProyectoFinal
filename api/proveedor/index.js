@@ -28,8 +28,8 @@ const validateParams = (req, res, next) => {
 const getProveedores=(req,res)=>{  
     console.log('getProveedores') ;
     Proveedor.getProveedores()
-    .then(function(proveedor){       
-        res.json(proveedor);
+    .then(listProvs =>{   
+        res.json({listProvs});
     })
     .catch(function(err){  
         console.log(err);
