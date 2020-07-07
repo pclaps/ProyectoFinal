@@ -12,7 +12,7 @@ class ListaUsuariosPage extends React.Component {
         return (
             <React.Fragment>          
                 <Route
-                    path="/to-do-list/task/:id"
+                    path="/lista-usuarios/usuario/:id"
                     render={(props) => <UsuarioDetalle {...props} id={props.match.params.id}/>}
                 />  
                  <Route

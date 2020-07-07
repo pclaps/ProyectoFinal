@@ -57,7 +57,8 @@ class Usuario {
                     console.log('fallo');
                     console.log('getUsuarioID BD: '+error);
                     reject(error);
-                } else {                        
+                } else { 
+                    console.log('else');
                     if (results[0] == null)
                     {
                         console.log('undefined idUsuario'+ error);
@@ -66,6 +67,7 @@ class Usuario {
                         }
                         reject(error);
                     }else{
+                        console.log('success getUsuarioID BD');
                             const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = results[0];
                             return new Usuario(idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor);                                   
                     }

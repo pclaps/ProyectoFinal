@@ -1,6 +1,6 @@
 const React = require('react');
 //const Proveedor = require('../Proveedor/Proveedor');
-const {Link} = require ('react-router-dom');
+const {Link,Segment,Dimmer,Loader,Image} = require ('react-router-dom');
 
 console.log(' componente ListaProveedores');
 
@@ -12,6 +12,7 @@ class UsuarioDetalle extends React.Component {
             loading: true,
             error: false,
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -69,7 +70,9 @@ class UsuarioDetalle extends React.Component {
     render() {
         const usuario  = this.state.usuario;
         if (this.state.loading) {
-            return <div>Cargando Usuario ...</div>
+            return <div>
+   
+                Cargando Usuario Detalle...</div>
         }
         return (
             <div>
@@ -82,44 +85,10 @@ class UsuarioDetalle extends React.Component {
                          <label>Correo electrónico</label>                          
                          <input placeholder='Email' 
                          value={this.state.email} 
-                         onChange={this.handleEmailChange}
-                         error={{
-                           content: 'Please enter a valid email address',
-                           pointing: 'below',
-                         }}/>                     
+                        
+                         />                     
                    </Form.Field>  
-                   <Form.Field required>
-                          <label>Contraseña</label>                          
-                          <input placeholder='Contraseña' 
-                          value={this.state.clave} 
-                          onChange={this.handleClaveChange}
-                         />
-                    </Form.Field>  
-                    <Form.Field required>
-                          <label>Nombre</label>
-                          <input placeholder='Nombre' 
-                          value={this.state.nombreUsuario} 
-                          onChange={this.handleNombreChange}/>
-                    </Form.Field>  
-                    <Form.Field required>
-                          <label>Apellido</label>
-                          <input placeholder='Apellido' 
-                          value={this.state.apellidoUsuario} 
-                          onChange={this.handleApellidoChange}/>
-                    </Form.Field>  
-                    <Form.Field required>
-                          <label>Fecha Nacimiento</label>
-                          <input placeholder='Fecha Nac' 
-                          value={this.state.fechaNacimiento} 
-                          onChange={this.handleFecNacChange}/>
-                    </Form.Field>  
-                    <Form.Field>
-                          <label>Celular</label>
-                          <input placeholder='Celular' 
-                          value={this.state.telefono} 
-                          onChange={this.handleTelefonoChange}/>
-                    </Form.Field> 
-                </Form>
+                  </Form>
             </div>
 
         );

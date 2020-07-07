@@ -1,7 +1,9 @@
 const React = require('react');
 const Usuario = require('../Usuario');
 const {Link} = require ('react-router-dom');
-const {Segment} = require('semantic-ui-react');
+const {Segment,List,Icon,Button,Label
+
+} = require('semantic-ui-react');
 
 console.log(' componente listaUsuario');
 //        <h1>Listado de Usuarios</h1>
@@ -38,15 +40,21 @@ class ListaUsuario extends React.Component {
     render() {
         const usuarios  = this.state.usuarios;
         if (this.state.loading) {
-            return <div>Cargando Usuarios ...</div>
+            return <div>                 
+                 Cargando Usuarios ...
+                 <Icon loading name='spinner' size="huge" /></div>
         }
         return (
             <div>
-                <Segment inverted textAlign="center">Listado de Usuarios</Segment>
-        
-                <div > 
-                                               
-                    <Link to={`/lista-usuarios/nuevousuario`}>Crear nuevo Usuario</Link>      
+                <Segment inverted textAlign="center">Listado de Usuarios</Segment>                  
+                <div >                                                
+                    <Link to={`/lista-usuarios/nuevousuario`}>Crear nuevo Usuario</Link> 
+                    <Button as={Link} to="/home">
+                        Ir a Inicio
+                    </Button>     
+                    <Label>
+                         <Icon name='user' />Cantidad de Usuarios{usuarios.length}
+                    </Label>
                 </div>
                 <ul>
                     {

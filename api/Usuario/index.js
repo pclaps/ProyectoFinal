@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
 console.log('API--Usuario...');
 /*
-const getUsuario = (req, res, next) => {
+const getSessionUsuario = (req, res, next) => {
 
     if(req.session.user){
         req.user = req.session.user;
@@ -38,13 +38,12 @@ const getAllUsuario=(req,res)=>{
 router.get('/', getAllUsuario);
 
 
-//Obtengo un Tipo de Actividad por ID
 const getUsuario=(req,res)=>{    
     const { id } = req.params;     
     console.log(id);
     Usuario.getUsuarioID(id)
-    .then(function(Usuario){        
-        res.json(Usuario);
+    .then(function(usu){        
+        res.json(usu);
     })
     .catch(function(err){  
         console.log(err);        
@@ -54,24 +53,7 @@ const getUsuario=(req,res)=>{
 };
 router.get('/:id', getUsuario);
 
-
-//Guardo un Tipo de Actividad
-
-/*
-router.post('/', (req, res, next) => {
-    console.log(req.body);
-    const task = new Task(null, req.body.name, req.body.description);
-
-    task.save().then(task => {
-        res.json({
-            task,
-        });
-    }).catch(err => {
-        next(err);
-    });
-});*/
-//const saveUsuario=(req,res)=>{
-router.post('/', (req, res, next) => {
+const saveUsuario=(req,res)=>{
     console.log('saveUsuario');
     const {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,rol,direccion } = req.body;    
     const dataUsu = {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,rol,direccion};
@@ -87,9 +69,12 @@ router.post('/', (req, res, next) => {
         console.log('ocurrio un error en al guardar usuario'+ 'codError : '+ err.errno );
         res.json(err);
     })
-});
+};
+
+router.post('/', saveUsuario );
 
 const deleteUsuario=(req,res)=>{
+    console.log('deleteUsuario');
     const { id } = req.params; // igual a     const id = req.params.id;
     Usuario.deleteUsuario(id)
     .then(function(Usuario){
@@ -102,9 +87,8 @@ const deleteUsuario=(req,res)=>{
         res.json(err);
     })
 }
+router.delete('/:id',validateParams,deleteUsuario);
 
-
-//router.post('/', (req, res, next) => {
 //para el post
 const updateUsuario=(req,res)=>{
 
@@ -122,5 +106,6 @@ const updateUsuario=(req,res)=>{
             })
    
 }
+router.post('/',validateParams,updateUsuario);
 
 module.exports = router

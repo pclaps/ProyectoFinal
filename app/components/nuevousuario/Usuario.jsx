@@ -13,14 +13,7 @@ const options = [
     { key: 'cliente', text: 'Cliente', value: 'cliente' },
   ]
 /*
-   <Form.Select 
-                       fluid
-                       label='Rol de usuario'
-                       options={options}
-                       placeholder='Tipo de usuario'
-                       value={this.state.rol} 
-                       onChange={this.handleRolChange}
-                     />
+ 
 */
 class nuevousuario extends React.Component {
 
@@ -188,12 +181,14 @@ class nuevousuario extends React.Component {
                           value={this.state.telefono} 
                           onChange={this.handleTelefonoChange}/>
                     </Form.Field> 
-                    <Form.Field>
-                          <label>Rol de usuario</label>
-                          <input placeholder='Tipo de usuario'
-                          value={this.state.rol} 
-                          onChange={this.handleRolChange}  />             
-                     </Form.Field>
+                    <Form.Select 
+                       fluid
+                       label='Rol de usuario'
+                       options={options}
+                       placeholder='Tipo de usuario'
+                       value={this.state.rol} 
+                       onChange={this.handleRolChange}
+                     />                
                     <Form.Field>
                           <label>Direccion</label>
                           <input placeholder='direccion' 
@@ -206,8 +201,7 @@ class nuevousuario extends React.Component {
                           value={this.state.idProveedor} 
                           onChange={this.handleIdProveedorChange}/>
                     </Form.Field>    
-                    <Form.Button primary >Crear Usuario</Form.Button>   
-                    <Form.Button secondary >Update Usuario</Form.Button>                  
+                    <Form.Button primary >Crear Usuario</Form.Button>                      
                 </Form>
             </div>
         );
