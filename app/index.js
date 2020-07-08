@@ -6,8 +6,6 @@ const ListaProveedorRouter = require('./pages/lista-proveedores');
 
 const { appErrorHandler } = require('../middlewares/error-handler');
 
-console.log('index app');
-
 //Aca se rutean las distintas páginas 
 router.use('/to-do-list', todoListRouter);
 router.use('/lista-usuarios', ListaUsuarioRouter);

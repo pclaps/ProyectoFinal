@@ -3,19 +3,14 @@ const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
 const { Button,Form, Segment,Dropdown } = require ('semantic-ui-react');
 
-//si importo un modelo deja de andar
-//const usuario = require('../../../models/usuarioModel');
-console.log('Componente nuevoUsuarios');
 const options = [
     { key: 'a', text: 'Administrador', value: 'Admin' },
     { key: 'e', text: 'Empleado', value: 'empleado' },
     { key: 'profesor', text: 'Profesor', value: 'Prof' },
     { key: 'cliente', text: 'Cliente', value: 'cliente' },
   ]
-/*
- 
-*/
-class nuevousuario extends React.Component {
+
+class UsuarioNuevo extends React.Component {
 
     constructor(props) {
         super(props);
@@ -132,12 +127,11 @@ class nuevousuario extends React.Component {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to="/to-do-list" />
+            return <Redirect to="lista-usuarios/" />
         }
         return (
             <div>               
                 <Segment inverted textAlign="center">Registro de Usuarios</Segment>
-                <Link to={`/to-do-list/`}>Ir al listado</Link>               
                 <Link to={`/lista-usuarios/`}>Ir al listado de Usuarios</Link>       
                 <Form onSubmit={this.handleSubmit} className="flex-container2">     
                     <Form.Field required>
@@ -208,4 +202,4 @@ class nuevousuario extends React.Component {
     }
 };
 
-module.exports = nuevousuario;
+module.exports = UsuarioNuevo;

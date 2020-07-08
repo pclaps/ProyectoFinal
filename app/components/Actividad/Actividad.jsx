@@ -1,8 +1,6 @@
 const React = require('react');
 const {Link} = require ('react-router-dom');
 
-console.log(' Componente Actividad');
-// <Link to={`/lista-usuarios/usuario/${this.props.idUsuario}`}>Ir al Usuario</Link>
 class Actividad extends React.Component {
   render() {
     return (

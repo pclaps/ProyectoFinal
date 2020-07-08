@@ -4,10 +4,10 @@ const ToDoList = require('../../components/to-do-list');
 const TaskDetail = require ('../../components/task-details');
 const NewTask = require ('../../components/new-task')
 const TipoActividad = require('../../components/nuevaTipoAct');
-const Usuario = require('../../components/nuevousuario/Usuario');
+const UsuarioNuevo = require('../../components/Usuario/UsuarioNuevo');
 const Proveedor = require('../../components/Proveedor/ProveedorForm');
 
-console.log('page-View-ToDoListPage');
+//console.log('page-View-ToDoListPage');
 
 class ToDoListPage extends React.Component {
     render() {
@@ -32,17 +32,7 @@ class ToDoListPage extends React.Component {
                     exact
                     path="/to-do-list/nueva"
                     render={(props) => <TipoActividad {...props} tasks={tasks}/>}
-                />
-                 <Route
-                    exact
-                    path="/to-do-list/nuevousuario"
-                    render={(props) => <Usuario {...props} tasks={tasks}/>}
-                />
-                 <Route
-                    exact
-                    path="/lista-proveedores/proveedor"
-                    render={(props) => <Proveedor {...props} proveedores={proveedores}/>}
-                />
+                />                              
             </React.Fragment>
         );
     }

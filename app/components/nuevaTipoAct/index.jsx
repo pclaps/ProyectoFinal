@@ -2,7 +2,6 @@ const React = require('react');
 const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
 const { Button,Form,Checkbox } = require ('semantic-ui-react');
-//const usuario = require('../../../models/usuarioModel');
 
 const options = [
     { key: 'm', text: 'Male', value: 'male' },

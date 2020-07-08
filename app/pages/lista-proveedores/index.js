@@ -6,7 +6,7 @@ const Proveedor = require('../../../models/ProveedorModel');
 const View = require('./view');
 
 // https://www.digitalocean.com/community/tutorials/react-react-router-ssr
-console.log('pages-lista-proveedores--index');
+//console.log('pages-lista-proveedores--index');
 
 router.get('/*', (req, res, next) => {
     const initialState = {};

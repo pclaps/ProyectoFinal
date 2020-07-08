@@ -7,7 +7,6 @@ const SAVE_USUARIO ="INSERT INTO usuario SET ?";
 const DELETE_USUARIO = "DELETE FROM usuario WHERE idUsuario = ?";
 const UPDATE_USUARIO = "UPDATE usuario SET ?  WHERE idUsuario = ?";
 //
-console.log('UsuariosModel');
 //
 class Usuario {
     constructor (idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor){       
@@ -50,15 +49,13 @@ class Usuario {
     }
 
     static getUsuarioID (id){
-        console.log(GET_USUARIO_BY_ID + id);
         return new Promise(function(resolve, reject){
             connection.query(GET_USUARIO_BY_ID,[id],function(error,results){
                 if (error){
                     console.log('fallo');
                     console.log('getUsuarioID BD: '+error);
                     reject(error);
-                } else { 
-                    console.log('else');
+                } else {                    
                     if (results[0] == null)
                     {
                         console.log('undefined idUsuario'+ error);
@@ -68,8 +65,9 @@ class Usuario {
                         reject(error);
                     }else{
                         console.log('success getUsuarioID BD');
+                        console.log(results[0]);
                             const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = results[0];
-                            return new Usuario(idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor);                                   
+                         resolve(new Usuario(idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor));                                      
                     }
                     
                 }

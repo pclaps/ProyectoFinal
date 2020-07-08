@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const Usuario = require('../../models/actividadModel');
 
-console.log('API--Actividad')
 
 const validateParams = (req, res, next) => {
     if(isNaN(req.params.id)) {

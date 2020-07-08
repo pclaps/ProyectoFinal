@@ -3,7 +3,7 @@ const { Route } = require('react-router-dom');
 const Proveedor = require('../../components/Proveedor/ProveedorForm');
 const ListaProveedores = require('../../components/Proveedor/ListaProveedores');
 
-console.log('ListaProveedoresPage-view');
+//console.log('ListaProveedoresPage-view');
 
 class ListaProveedoresPage extends React.Component {
     render() {        

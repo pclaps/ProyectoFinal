@@ -2,10 +2,9 @@ const React = require('react');
 const {Link} = require ('react-router-dom');
 const {List,Button} = require('semantic-ui-react');
 
-console.log(' Componente Usuario');
 
 class Usuario extends React.Component {
-    constructor(props) {
+  /*  constructor(props) {
         super(props);
         this.state = {
             usuarios: null,
@@ -26,7 +25,7 @@ class Usuario extends React.Component {
         alert('borro usuario');
      })
   };
-
+*/
   render() {
  
     return (
@@ -52,8 +51,9 @@ class Usuario extends React.Component {
           <List.Content>
               <a href= {`/lista-usuarios/usuario/${this.props.idUsuario}`}>Ir a Usuario</a>
           </List.Content>
-        </List.Item>        
-        <Button  onClick={this.handleDelete}>Borrar </Button>
+        </List.Item>                
+        <Button color='red' onClick={()=>this.props.onDeleteUsuario(this.props.idUsuario)}>Borrar</Button>
+        <Button as={Link} to= {`/lista-usuarios/usuario/${this.props.idUsuario}`}>Modificar </Button>
     </List>
        
       </div>
@@ -70,3 +70,25 @@ module.exports = Usuario;
         <Link to={`/lista-usuarios/usuario/${this.props.idUsuario}`}>Ir al Usuario</Link>
         <p>{this.props.email}</p>       
       </li>*/
+
+      /**
+       *   <div>
+          <Table.Cell>
+              {this.props.idUsuario} 
+          </Table.Cell>    
+          <Table.Cell>
+              {this.props.nombreUsuario} 
+          </Table.Cell> 
+          <Table.Cell>
+              {this.props.contrasena} 
+          </Table.Cell> 
+          <Table.Cell>
+              {this.props.correo}          
+          </Table.Cell>
+          <Table.Cell>
+              <Button primary as={Link} to={`/detalleUsuario/${this.props.idUsuario}`}>Detalle</Button>
+              <Button color='red' onClick={()=>this.props.onDeleteUsuario(this.props.idUsuario)}>Borrar</Button>
+          </Table.Cell>
+      </div>
+       * 
+       */

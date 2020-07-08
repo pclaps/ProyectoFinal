@@ -8,7 +8,7 @@ const styles = require('../pages/to-do-list/style.scss');
 const initialState = JSON.parse(window.__STATE__);
 
 delete window.__STATE__;
-console.log('Client-ToDoListPage');
+
 ReactDOM/ReactDOM.hydrate(
     <BrowserRouter>
         <ToDoListPage initialState={initialState}/>

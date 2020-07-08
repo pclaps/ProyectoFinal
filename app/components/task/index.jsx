@@ -1,7 +1,7 @@
 const React = require('react');
 const {Link} = require ('react-router-dom');
 const { Button,Form, Segment,Dropdown, FormField } = require ('semantic-ui-react');
-console.log(' Componente Task');
+
   
 class Task extends React.Component {
   render() {

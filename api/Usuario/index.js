@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
-console.log('API--Usuario...');
+
 /*
 const getSessionUsuario = (req, res, next) => {
 
@@ -38,17 +38,21 @@ const getAllUsuario=(req,res)=>{
 router.get('/', getAllUsuario);
 
 
-const getUsuario=(req,res)=>{    
+const getUsuario=(req,res)=>{  
     const { id } = req.params;     
-    console.log(id);
+    console.log('getUsuario API: '+ id);
     Usuario.getUsuarioID(id)
-    .then(function(usu){        
-        res.json(usu);
+            .then(usuario => {
+               res.json({
+                    usuario,
+              });   
+    /*        .then(function({user}){          
+                res.json({user});  */   
     })
-    .catch(function(err){  
-        console.log(err);        
-        console.log('ocurrio un error '+ err.msg);
-        res.json(err);
+         .catch(function(err){  
+            console.log(err);        
+            console.log('ocurrio un error '+ err.msg);
+            res.json(err);
     })
 };
 router.get('/:id', getUsuario);
@@ -61,7 +65,6 @@ const saveUsuario=(req,res)=>{
     console.log('guardarUsuario');
     Usuario.guardarUsuario(dataUsu)
      .then(function(Usuario){
-        console.log(Usuario);
         res.json(Usuario);    
     })
      .catch(function(err){  

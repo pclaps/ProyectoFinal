@@ -8,8 +8,6 @@ const initialState = JSON.parse(window.__STATE__);
 
 delete window.__STATE__;
 
-console.log('ListaUsuariosPage-client');
-
 ReactDOM/ReactDOM.hydrate(
     <BrowserRouter>
         <ListaUsuariosPage initialState={initialState}/>

@@ -6,7 +6,7 @@ const Usuario = require('../../../models/usuarioModel');
 const View = require('./view');
 
 // https://www.digitalocean.com/community/tutorials/react-react-router-ssr
-console.log('pages-lista-usuarios--index');
+//console.log('pages-lista-usuarios--index');
 
 router.get('/*', (req, res, next) => {
     const initialState = {};

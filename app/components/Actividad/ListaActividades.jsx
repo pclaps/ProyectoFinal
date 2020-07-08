@@ -2,7 +2,7 @@ const React = require('react');
 const Actividad = require('./Actividad');
 const {Link} = require ('react-router-dom');
 
-console.log(' componente listaActividades');
+
 
 class ListaActividades extends React.Component {
     constructor(props) {

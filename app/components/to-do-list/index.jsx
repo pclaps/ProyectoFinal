@@ -2,8 +2,6 @@ const React = require('react');
 const Task = require('../task');
 const {Link} = require ('react-router-dom');
 
-console.log('index componente todollist');
-
 class ToDoList extends React.Component {
     constructor(props) {
         super(props);

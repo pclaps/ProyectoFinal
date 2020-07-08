@@ -1,10 +1,11 @@
 const React = require('react');
 const { Route } = require('react-router-dom');
-const Usuario = require('../../components/nuevousuario/Usuario');
-const UsuarioDetalle = require('../../components/nuevousuario/UsuarioDetalle');
-const ListaUsuarios = require('../../components/lista-usuarios');
+const UsuarioNuevo = require('../../components/Usuario/UsuarioNuevo');
+const UsuarioEditar = require('../../components/Usuario/UsuarioEditar');
+const ListaUsuarios = require('../../components/Usuario/ListaUsuarios');
 
-console.log('ListaUsuariosPage-view');
+
+//console.log('ListaUsuariosPage-view');
 
 class ListaUsuariosPage extends React.Component {
     render() {
@@ -13,22 +14,17 @@ class ListaUsuariosPage extends React.Component {
             <React.Fragment>          
                 <Route
                     path="/lista-usuarios/usuario/:id"
-                    render={(props) => <UsuarioDetalle {...props} id={props.match.params.id}/>}
+                    render={(props) => <UsuarioEditar {...props} id={props.match.params.id}/>}
                 />  
                  <Route
                     exact
                     path="/lista-usuarios"
                     render={(props) => <ListaUsuarios {...props} usuarios={usuarios}/>}
                 />    
-                 <Route
-                    exact
-                    path="/lista-usuarios/updUsuario"
-                    render={(props) => <ListaUsuarios {...props} usuarios={usuarios}/>}
-                />
                    <Route
                     exact
                     path="/lista-usuarios/nuevousuario"
-                    render={(props) => <Usuario {...props} usuarios={usuarios}/>}
+                    render={(props) => <UsuarioNuevo {...props} usuarios={usuarios}/>}
                 />
             </React.Fragment>
         );

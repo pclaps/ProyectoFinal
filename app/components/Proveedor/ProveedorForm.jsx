@@ -4,8 +4,8 @@ const { Redirect } = require ('react-router-dom');
 const { Button,Form, Segment } = require ('semantic-ui-react');
 
 
-///FORMULARIO DE NUEVA ACTIVIDAD
-class ProveedorForm extends React.Component {
+///FORMULARIO DE NUEVO PROVEEDOR
+class ProveedorNuevo extends React.Component {
 
     constructor(props) {
         super(props);
@@ -98,4 +98,4 @@ class ProveedorForm extends React.Component {
     }
 };
 
-module.exports = ProveedorForm;
+module.exports = ProveedorNuevo;

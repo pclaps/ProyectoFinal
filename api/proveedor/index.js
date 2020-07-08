@@ -8,7 +8,7 @@ router.post('/',saveProveedor);
 router.delete('/:id', deleteProveedor);
 router.post('/update/:id',updateProveedor);
 */
-console.log('PROVEEDOR API');
+
 const Proveedor = require('../../models/ProveedorModel');
 
 

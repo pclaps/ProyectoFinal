@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const Task = require('../../models/task');
 //Handlers para los endpoints de la API de Tasks
-console.log('API---Tasks');
 
 router.get('/:id', (req, res, next) => {
     console.log('getTaskById');

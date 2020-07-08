@@ -1,9 +1,6 @@
 const React = require('react');
 //const Proveedor = require('../Proveedor/Proveedor');
 const {Link} = require ('react-router-dom');
-const Proveedor = require('../../../models/ProveedorModel');
-
-console.log(' componente ListaProveedores');
 
 class ListaProveedores extends React.Component {
     constructor(props) {
