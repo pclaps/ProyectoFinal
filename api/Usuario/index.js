@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
+const moment = require('moment');
 
 /*
 const getSessionUsuario = (req, res, next) => {
@@ -94,9 +95,11 @@ router.delete('/:id',validateParams,deleteUsuario);
 const updateUsuario=(req,res)=>{
     
     const { id } = req.params; console.log('updateUsuario: '+ id);
-    const {clave,email,nombreUsuario,apellidoUsuario,fecNac,telefono,fecCreado,fecModif,rol,direccion } = req.body;
-    const fechaNacimiento='1900/10/10';
-    
+    const {clave,email,nombreUsuario,apellidoUsuario,fecNac,telefono,fecC,fecM,rol,direccion } = req.body;
+    const fechaNacimiento= moment(fecNac).format();
+    const fecCreado= moment(fecC).format();
+    const fecModif= moment(fecM).format();
+
     const dataUsu = {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion};
     Usuario.updateUsuario(dataUsu,id)
            .then(function(usuario){
