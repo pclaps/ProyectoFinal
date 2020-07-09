@@ -1,5 +1,4 @@
 const React = require('react');
-//const Proveedor = require('../Proveedor/Probuveedor');
 const {Link,} = require ('react-router-dom');
 const { Button,Form, Segment,Dropdown } = require ('semantic-ui-react');
 
@@ -14,7 +13,21 @@ class UsuarioEditar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            usuario: null,
+            usuario: {
+                idUsuario: null,
+                clave: '',
+                email: '',
+                nombreUsuario: '',
+                apellidoUsuario: '',
+                fechaNacimiento: '',
+                telefono: '',
+                fecCreado:'',
+                fecModif: '',
+                rol:'',
+                direccion: '',
+                idProveedor:''
+            },
+            redirect : false,
             loading: true,
             error: false,
         };
@@ -33,84 +46,112 @@ class UsuarioEditar extends React.Component {
 
     
     handleClaveChange(event) {
+        
         this.setState({
-
-            clave: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            clave : event.target.value
+            }
         });
     }
     handleEmailChange(event) {
-        console.log(event.target.value);
         this.setState({
-            email: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            mail : event.target.value
+            }
         });
     }
     handleNombreChange(event) {
+        
         this.setState({
-            nombreUsuario: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            nombreUsuario : event.target.value
+            }
         });
     }
 
     handleApellidoChange(event) {
         this.setState({
-            apellidoUsuario: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            apellidoUsuario : event.target.value
+            }
         });
     }
 
     handleFecNacChange(event) {
         this.setState({
-            fechaNacimiento: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            fechaNacimiento : event.target.value           
+            }
         });
     }
   
     handleTelefonoChange(event) {
         this.setState({
-            telefono: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            telefono : event.target.value
+            }
         });
     }
 
     handleDireccionChange(event) {
         this.setState({
-            direccion: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            direccion : event.target.value
+            }
         });
     }
 
     handleRolChange(event) {
-        console.log(event.target.value);
         this.setState({
-            rol: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            rol : event.target.value
+            }
         });
     }
 
     handleIdProveedorChange(event) {
         this.setState({
-            idProveedor: event.target.value
+            usuario: {
+                ...this.state.usuario,
+            idProveedor : event.target.value
+            }
         });
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        alert('nuevo usuario');
-        fetch('/api/usuario', {
-            method: 'POST',
+        event.preventDefault();      
+        //fetch(`/api/usuario/${this.props.id}`, { //asi accedo a la propiedad del padre
+            console.log(`/api/usuario/${this.state.usuario.idUsuario}`)
+        fetch(`/api/usuario/${this.state.usuario.idUsuario}`, {
+            method: 'PUT',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
             body: JSON.stringify({
-                clave: this.state.clave,
-                email: this.state.email,
-                nombreUsuario: this.state.nombreUsuario,
-                apellidoUsuario: this.state.apellidoUsuario,
-                fechaNacimiento: this.state.fechaNacimiento,
-                telefono: this.state.telefono,
-                fecCreado:this.state.fecCreado,
-                fecModif: this.state.fecModif,
-                rol:this.state.rol,
-                direccion: this.state.direccion,
-                idProveedor:this.state.idProveedor
+                clave: this.state.usuario.clave,
+                email: this.state.usuario.email,
+                nombreUsuario: this.state.usuario.nombreUsuario,
+                apellidoUsuario: this.state.usuario.apellidoUsuario,
+                fechaNacimiento: this.state.usuario.fechaNacimiento,
+                telefono: this.state.usuario.telefono,
+                fecCreado:this.state.usuario.fecCreado,
+                fecModif: this.state.usuario.fecModif,
+                rol:this.state.usuario.rol,
+                direccion: this.state.usuario.direccion,
+                idProveedor:this.state.usuario.idProveedor
             })
-        }).then(res => res.json()).then((data) =>{
-
+        }).then(res => res.json())  
+          .then((data) =>{
             this.setState({
                 redirect: true
             });
+
 
         }).catch((err) => {
             alert(err);
@@ -119,8 +160,7 @@ class UsuarioEditar extends React.Component {
     }
 
     componentDidMount() {       
-        //alert(`/api/usuario/${this.props.id}`);
-        //fetch(`/api/usuario/${this.props.id}`)
+       
         fetch(`/api/usuario/${this.props.id}`, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -135,7 +175,9 @@ class UsuarioEditar extends React.Component {
             // body: JSON.stringify(data) // body data type must match "Content-Type" header
           }) .then(res => res.json()).then((data) =>{
                 this.setState({
-                    usuario: data.usuario,
+                    usuario: {
+                        ...data.usuario
+                    },
                     loading: false,
                   error: false,
             });
@@ -184,10 +226,11 @@ class UsuarioEditar extends React.Component {
                           onChange={this.handleApellidoChange}/>
                     </Form.Field>  
                     <Form.Field required>
-                          <label>Fecha Nacimiento</label>
+                          <label>Fecha Nacimiento</label>                          
                           <input placeholder='Fecha Nac' 
                           value={this.state.usuario.fechaNacimiento} 
-                          onChange={this.handleFecNacChange}/>
+                          onChange={this.handleFecNacChange}
+                          />
                     </Form.Field>  
                     <Form.Field>
                           <label>Celular</label>
@@ -218,7 +261,6 @@ class UsuarioEditar extends React.Component {
                     <Form.Button primary >Modificar Usuario</Form.Button>                      
                 </Form>
             </div>
-
         );
     }
 };

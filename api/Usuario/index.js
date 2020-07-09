@@ -46,8 +46,6 @@ const getUsuario=(req,res)=>{
                res.json({
                     usuario,
               });   
-    /*        .then(function({user}){          
-                res.json({user});  */   
     })
          .catch(function(err){  
             console.log(err);        
@@ -94,21 +92,23 @@ router.delete('/:id',validateParams,deleteUsuario);
 
 //para el post
 const updateUsuario=(req,res)=>{
-
-    const { id } = req.params; 
-    const {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion } = req.body;
+    
+    const { id } = req.params; console.log('updateUsuario: '+ id);
+    const {clave,email,nombreUsuario,apellidoUsuario,fecNac,telefono,fecCreado,fecModif,rol,direccion } = req.body;
+    const fechaNacimiento='1900/10/10';
+    
     const dataUsu = {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion};
     Usuario.updateUsuario(dataUsu,id)
-           .then(function(Usuario){
+           .then(function(usuario){
               //console.log(Usuario);
-                res.json(Usuario);    
+                res.json(usuario);    
             })
             .catch(function(err){  
-                console.log('ocurrio un error en deleteUsuario');
+                console.log('ocurrio un error en Update Usuario');
                 res.json(err);
             })
    
 }
-router.post('/',validateParams,updateUsuario);
+router.put('/:id',validateParams,updateUsuario);
 
 module.exports = router

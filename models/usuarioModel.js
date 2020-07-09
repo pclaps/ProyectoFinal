@@ -114,14 +114,13 @@ class Usuario {
     }
 
     static updateUsuario(data,id){
-        console.log(UPDATE_USUARIO);
-        console.log(id);
+        console.log('updateUsuario BD: '+ id);        
         return new Promise(function(resolve, reject){
             connection.query(UPDATE_USUARIO,[data,id],function(error,results){
                 if (error){
                     console.log(error);
                     reject(error);
-                } else {                                                          
+                } else {       console.log('success');                                                     
                     resolve({"success" : "true",
                               "descripcion": "update Usuario con exito"
                             });
