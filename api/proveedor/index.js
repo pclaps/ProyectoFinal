@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 /*router.get('/', getAllProveedor);
 router.get('/:id', getProveedor);
 router.post('/',saveProveedor);
@@ -53,10 +52,11 @@ const getProveedorId=(req,res)=>{
         res.json(err);
     })
 };
+router.get('/:id', getProveedorId);
 
 const saveProveedor=(req,res)=>{
-    const {descripcion , imagen } = req.body;
-    const data = {descripcion, imagen};
+    const {descripcion , direccion } = req.body;
+    const data = {descripcion, direccion};
     Proveedor.guardarProv(data)
     .then(function(proveedor){
         console.log(proveedor);
@@ -69,13 +69,15 @@ const saveProveedor=(req,res)=>{
     })
 };
 
+router.post('/', saveProveedor );
+
 const deleteProveedor=(req,res)=>{
     const { id } = req.params; // igual a     const id = req.params.id;
    
     Proveedor.deleteTipAct(id)
-    .then(function(Proveedor){
-        console.log(Proveedor);
-        res.json(Proveedor);    
+    .then(function(proveedor){
+        console.log(proveedor);
+        res.json(proveedor);    
     })
     .catch(function(err){  
         console.log(err)    ;
@@ -83,22 +85,23 @@ const deleteProveedor=(req,res)=>{
         res.json(err);
     })
 }
+router.delete('/:id',validateParams,deleteProveedor);
 
-//para el post
 const updateProveedor=(req,res)=>{
 
     const { id } = req.params; 
     const {descripcion,direccion } = req.body;
     const dataProv = {descripcion,direccion};
     Proveedor.updateProveedor(dataProv,id)
-           .then(function(Proveedor){
+           .then(function(proveedor){
               //console.log(Usuario);
-                res.json(Proveedor);    
+                res.json(proveedor);    
             })
             .catch(function(err){  
                 console.log('ocurrio un error en deleteProveedor');
                 res.json(err);
             })
 }
+router.put('/:id',validateParams,updateProveedor);
 
 module.exports = router;

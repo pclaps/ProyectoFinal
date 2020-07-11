@@ -5,7 +5,8 @@ const GET_ACTIVIDADES_BY_ACTIVIDAD ="SELECT * FROM ACTIVIDAD WHERE name = ?";
 const SAVE_ACTIVIDAD ="INSERT INTO ACTIVIDAD set ?";
 const DELETE_ACTIVIDADES = "DELETE * FROM ACTIVIDAD WHERE name = ?";
 const GET_ACTIVIDADES_BY_PRV = "SELECT * FROM ACTIVIDAD WHERE IdProveedor =?"
-//console.log(GET_ACTIVIDADES_BY_ACTIVIDAD);
+const GET_ACTIVIDAD_BY_ID = "SELECT * FROM ACTIVIDAD WHERE idActividad =?"
+const GETALL_ACTIVIDAD="SELECT * FROM ACTIVIDAD";
 
 class ACTIVIDAD {
     constructor (idActividad, descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor){       
@@ -18,25 +19,61 @@ class ACTIVIDAD {
         this.idProveedor = idProveedor
     }
 
+     static getTodasActividadporProveedor(id){
+        console.log('getTodasActividadporProveedor BD : '+id);
+        return new Promise(function(resolve, reject){
+            connection.query(GET_ACTIVIDADES_BY_PRV,[id],function(error,results){
+                if (error){
+                    console.log(error);
+                    reject(error);
+                } else {                   
+                    if (results[0] == null)
+                    {
+                        console.log('undefined idUsuario'+ error);
+                        const error ={ success: false,
+                                       msg : 'No existe registro',
+                        }
+                        reject(error);
+                    }else{
+                        resolve(results.map((actividad) => {
+                            const {idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor} = actividad;                   
+                            return new ACTIVIDAD(idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor);
+                        }));                       
+                }}
+            });
+        })
+        }
+        
     static getTodasActividad (){
+        console.log('getTodasActividad BD :')
         return new Promise(function(resolve, reject){
             connection.query(GETALL_ACTIVIDAD,function(error,results){
                 if (error){
                 
                     reject(error);
                 } else {                                     
-                    console.log(results);
-                
-                    resolve(results.map((Actividad) => {
-                        const {idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor} = results[0];//aca tengo los nombres posta                    
-                        resolve(new ACTIVIDAD(idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor))
-                    }));
+                    //console.log(results);
+                  
+                    try {
+                        resolve(results.map((actividad) => {
+                            const {idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor} = actividad;                   
+                            return new ACTIVIDAD(idActividad,descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor);
+                        }));
+                     } catch(error) {
+                        // console.log(error);
+                         /*  const error ={ success: false,
+                           msg : 'No existe registro',
+                        }*/
+                        reject(error);
+                       }
+                   
                 }
             });
         })
     }
 
     static getUnaActividad (id){
+        console.log('getUnaActividad BD :'+ id);
         return new Promise(function(resolve, reject){
             connection.query(GET_ACTIVIDAD_BY_ID,[id],function(error,results){
                 if (error){

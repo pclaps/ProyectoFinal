@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Usuario = require('../../models/actividadModel');
+const Actividad = require('../../models/actividadModel');
 
 
 const validateParams = (req, res, next) => {
@@ -13,20 +13,41 @@ const validateParams = (req, res, next) => {
     }
 };
 
+
 const getAllActividad=(req,res)=>{   
-    console.log('getAllActividad router');
-    Actividad.getTodasActividad()
-    .then(function(listActividades){       
-        res.json(listActividades);
+    
+    if (req.query.idProveedor){
+        console.log('getTodasActividadporProveedor API');
+        const id = req.query.idProveedor;   
+        Actividad.getTodasActividadporProveedor(id)
+        .then(listActividades =>{   
+        res.json({listActividades})
+        console.log(listActividades);
     })
     .catch(function(err){  
         console.log(err);
-        console.log('ocurrio un error en getAllActividad');
+        console.log('ocurrio un error en getTodasActividadporProveedor');
         res.json(err);
     })
+    }
+    else
+    {
+        console.log('getAllActividad API');
+        Actividad.getTodasActividad()
+        .then(listActividades =>{   
+            res.json({listActividades})
+            console.log(listActividades);;
+        })
+        .catch(function(err){  
+            console.log(err);
+            console.log('ocurrio un error en getAllActividad');
+            res.json(err);
+        })
+    }
+    
 };
 
-//router.get('/', (req, res, next) => {}
+router.get('/', getAllActividad);
 
 //Obtengo un Tipo de Actividad por ID
 const getActividad=(req,res)=>{    
@@ -41,6 +62,8 @@ const getActividad=(req,res)=>{
         res.json(err);
     })
 };
+router.get('/:id', getActividad);
+
 //Guardo un Tipo de Actividad
 const saveActividad=(req,res)=>{
     const {descripcion , imagen } = req.body;
@@ -56,6 +79,7 @@ const saveActividad=(req,res)=>{
         res.json(err);
     })
 };
+router.post('/', saveActividad );
 
 const deleteActividad=(req,res)=>{
     const { id } = req.params; // igual a     const id = req.params.id;
@@ -72,7 +96,7 @@ const deleteActividad=(req,res)=>{
     })
 }
 
-
+router.delete('/:id',validateParams,deleteActividad);
 
 //para el post
 const updateActividad=(req,res)=>{
@@ -89,6 +113,7 @@ const updateActividad=(req,res)=>{
          console.log(success);
     }); 
 }
+router.put('/:id',validateParams,updateActividad);
 
 module.exports = router;
 

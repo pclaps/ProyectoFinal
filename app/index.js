@@ -10,7 +10,7 @@ const { appErrorHandler } = require('../middlewares/error-handler');
 router.use('/to-do-list', todoListRouter);
 router.use('/lista-usuarios', ListaUsuarioRouter);
 router.use('/lista-actividades', ListaActividadesRouter);
-router.use('lista-proveedores',ListaProveedorRouter);
+router.use('/lista-proveedores',ListaProveedorRouter);
 //router.use('/login', loginRouter);
 router.use(appErrorHandler);
 

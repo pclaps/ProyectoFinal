@@ -19,8 +19,8 @@ router.get('/*', (req, res, next) => {
     );
 
     res.render('template', {
-        pageName: 'lista-usuarios',
-        pageTitle: 'Lista de Usuarios',
+        pageName: 'seguridad',
+        pageTitle: 'Seguridad de Usuarios',
         host: 'http://localhost:3000',
         initialState,
         content

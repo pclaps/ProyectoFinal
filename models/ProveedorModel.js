@@ -14,10 +14,10 @@ class Proveedor {
     }
 
     static getProveedores (){
+        console.log('getProveedores');
         return new Promise(function(resolve, reject){
             connection.query(GETALL_PROVEEDOR,function(error,results){
-                if (error){
-                
+                if (error){                
                     reject(error);
                 } else {                                     
                     console.log(results);
@@ -32,6 +32,7 @@ class Proveedor {
     }
 
     static getProveedorId (id){
+        console.log('getProveedorId');
         return new Promise(function(resolve, reject){
             connection.query(GET_PROVEEDOR_BY_ID,[id],function(error,results){
                 if (error){

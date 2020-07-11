@@ -1,5 +1,5 @@
 const React = require('react');
-const {Link,} = require ('react-router-dom');
+const {Link,Redirect} = require ('react-router-dom');
 const { Button,Form, Segment,Dropdown } = require ('semantic-ui-react');
 
 const options = [
@@ -186,10 +186,8 @@ class UsuarioEditar extends React.Component {
 
     render() {        
         const usuario  = this.state.usuario;
-        console.log(usuario)
-        if (this.state.loading) {
-            return <div>
-                Cargando Usuario Detalle...</div>
+        if (this.state.redirect) {
+            return <Redirect to="lista-usuarios/" />
         }
         return (
             <div>               

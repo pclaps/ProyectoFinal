@@ -16,15 +16,14 @@ class ProveedorNuevo extends React.Component {
             redirect: null
         };
         //Defino Handlers
-        this.handleDescripcion = this.handleDescripcion.bind(this);       
-        this.handleDireccionChange = this.handleDireccionChange.bind(this);
-        this.handleIdProveedorChange = this.handleIdProveedorChange.bind(this);       
+        this.handleDescripcionChange = this.handleDescripcionChange.bind(this);       
+        this.handleDireccionChange = this.handleDireccionChange.bind(this);       
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleDescripcion(event) {
+    handleDescripcionChange(event) {
         this.setState({
-            email: event.target.value
+            descripcion: event.target.value
         });
     }
 
@@ -34,11 +33,7 @@ class ProveedorNuevo extends React.Component {
         });
     }
 
-    handleIdProveedorChange(event) {
-        this.setState({
-            idProveedor: event.target.value
-        });
-    }
+    
 
     handleSubmit(event) {
         event.preventDefault();
@@ -73,10 +68,10 @@ class ProveedorNuevo extends React.Component {
                 <Form onSubmit={this.handleSubmit} className="flex-container2"> 
                  
                     <Form.Field>
-                          <label>descripcion</label>
-                          <input placeholder='Email' 
-                          value={this.state.email} 
-                          onChange={this.handleEmailChange}/>
+                          <label>Descripcion</label>
+                          <input placeholder='Descripcion' 
+                          value={this.state.descripcion} 
+                          onChange={this.handleDescripcionChange}/>
                     </Form.Field>  
                                    
                     <Form.Field>
@@ -85,13 +80,8 @@ class ProveedorNuevo extends React.Component {
                           value={this.state.direccion} 
                           onChange={this.handleDireccionChange}/>
                     </Form.Field>   
-                    <Form.Field>
-                          <label>Id Proveedor</label>
-                          <input placeholder='idProveedor' 
-                          value={this.state.idProveedor} 
-                          onChange={this.handleIdProveedorChange}/>
-                    </Form.Field>     
-                    <Form.Button primary >Crear Usuario</Form.Button>                   
+                   
+                    <Form.Button primary >Crear Proveedor</Form.Button>                   
                 </Form>
             </div>
         );

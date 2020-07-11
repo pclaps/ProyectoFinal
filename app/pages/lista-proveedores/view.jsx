@@ -1,7 +1,8 @@
 const React = require('react');
 const { Route } = require('react-router-dom');
-const Proveedor = require('../../components/Proveedor/ProveedorForm');
+const ProveedorNuevo = require('../../components/Proveedor/ProveedorNuevo');
 const ListaProveedores = require('../../components/Proveedor/ListaProveedores');
+const ProveedorEditar = require('../../components/Proveedor/ProveedorEditar');
 
 //console.log('ListaProveedoresPage-view');
 
@@ -16,8 +17,13 @@ class ListaProveedoresPage extends React.Component {
                 />
                    <Route
                     exact
-                    path="/lista-proveedores/proveedor"
-                    render={(props) => <Proveedor {...props} />}
+                    path="/lista-proveedores/proveedor/:id"
+                    render={(props) => <ProveedorEditar {...props} />}
+                />
+                   <Route
+                    exact
+                    path="/lista-proveedores/nuevoproveedor"
+                    render={(props) => <ProveedorNuevo {...props} />}
                 />
             </React.Fragment>
         );

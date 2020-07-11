@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const { BrowserRouter } = require('react-router-dom');
 const ListaProveedoresPage = require('../pages/lista-proveedores/view');
-const styles = requireListaProveedoresPage('../pages/lista-proveedores/style.scss');
+const styles = require('../pages/lista-proveedores/style.scss');
 
 const initialState = JSON.parse(window.__STATE__);
 

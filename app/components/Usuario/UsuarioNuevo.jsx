@@ -127,7 +127,7 @@ class UsuarioNuevo extends React.Component {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to="lista-usuarios/" />
+            return <Redirect to="/lista-usuarios" />
         }
         return (
             <div>               
