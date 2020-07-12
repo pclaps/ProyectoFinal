@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 //Defino las funcionalidades para la clase 
 const GETALL_USUARIO ="SELECT * FROM usuario ";
 const GET_USUARIO_BY_ID ="SELECT * FROM usuario WHERE idUsuario = ?";
+const GET_USUARIO_BY_MAIL ="SELECT * FROM usuario WHERE email = ?";
 const SAVE_USUARIO ="INSERT INTO usuario SET ?";
 const DELETE_USUARIO = "DELETE FROM usuario WHERE idUsuario = ?";
 const UPDATE_USUARIO = "UPDATE usuario SET ?  WHERE idUsuario = ?";
@@ -23,6 +24,44 @@ class Usuario {
         this.direccion = direccion,
         this.idProveedor = idProveedor
     }
+
+    // Valido mail y clave
+    static validoMailLogin (data){
+        const email = data.email;
+        const claveLogin = data.clave;
+        console.log('validoMailLogin params BD: '+ email +' : '+ claveLogin);
+        
+        return new Promise(function(resolve, reject){
+            connection.query(GET_USUARIO_BY_MAIL,[email], (error, result) => {
+            if (error){         
+                console.log(error);
+                reject(error);                         
+            }
+           else {                
+                //console.log(result);                
+                const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = result[0];
+                const hash =clave;
+                console.log(hash);
+                //tengo la clave que esta en la base
+                //definir variable hashTabla = hash 
+                bcrypt.compare(claveLogin,hash,function(error,res){
+                    if (res)  {
+                        console.log('OK');
+                        resolve( 
+                            { success: true,
+                                msg : 'usuario registrado',}
+                            ) 
+                    }
+                    else
+                    {
+                        console.log('Error hash');
+                        reject(error);
+                    } 
+                 })
+                }
+            })           
+    })
+}
 
     static getUsuarios (){
         return new Promise(function(resolve, reject){

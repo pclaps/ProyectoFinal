@@ -5,15 +5,15 @@ const Login = require('../../components/Usuario/Login');
 
 //console.log('ListaUsuariosPage-view');
 
-class ListaUsuariosPage extends React.Component {
+class SeguridadPage extends React.Component {
     render() {
         const { usuarios } = this.props.initialState;       
         return (
             <React.Fragment>                          
                  <Route
                     exact
-                    path="/seguridad"
-                    render={(props) => <ListaUsuarios {...props} usuarios={usuarios}/>}
+                    path="/seguridad/login"
+                    render={(props) => <Login {...props} usuarios={usuarios}/>}
                 />    
                    <Route
                     exact
@@ -25,4 +25,4 @@ class ListaUsuariosPage extends React.Component {
     }
 };
 
-module.exports = ListaUsuariosPage;
+module.exports = SeguridadPage;

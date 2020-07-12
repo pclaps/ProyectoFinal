@@ -127,7 +127,8 @@ class UsuarioEditar extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();      
+        event.preventDefault();   
+        alert(this.state.usuario.rol)   
         //fetch(`/api/usuario/${this.props.id}`, { //asi accedo a la propiedad del padre
             console.log(`/api/usuario/${this.state.usuario.idUsuario}`)
         fetch(`/api/usuario/${this.state.usuario.idUsuario}`, {
@@ -187,7 +188,7 @@ class UsuarioEditar extends React.Component {
     render() {        
         const usuario  = this.state.usuario;
         if (this.state.redirect) {
-            return <Redirect to="lista-usuarios/" />
+            return <Redirect to="/lista-usuarios" />
         }
         return (
             <div>               

@@ -4,9 +4,9 @@ const { Redirect } = require ('react-router-dom');
 const { Button,Form, Segment,Dropdown } = require ('semantic-ui-react');
 
 const options = [
-    { key: 'a', text: 'Administrador', value: 'Admin' },
-    { key: 'e', text: 'Empleado', value: 'empleado' },
-    { key: 'profesor', text: 'Profesor', value: 'Prof' },
+    { key: 'administrador', text: 'Administrador', value: 'administrador' },
+    { key: 'empleado', text: 'Empleado', value: 'empleado' },
+    { key: 'profesor', text: 'Profesor', value: 'profesor' },
     { key: 'cliente', text: 'Cliente', value: 'cliente' },
   ]
 

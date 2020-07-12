@@ -6,7 +6,7 @@ const {List,Button,Table} = require('semantic-ui-react');
 class Proveedor extends React.Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
        <Table.Cell>{this.props.idProveedor}</Table.Cell>
        <Table.Cell>{this.props.descripcion}</Table.Cell>
        <Table.Cell>{this.props.direccion}</Table.Cell>
@@ -15,7 +15,7 @@ class Proveedor extends React.Component {
                          <a href= {`/lista-proveedores/proveedor/${this.props.idProveedor}`}>Ir a Proveedor</a>                                                    
        </Table.Cell>   
        <Table.Cell><a href= {`/lista-actividades/porproveedor/${this.props.idProveedor}`}>Seleccionar Actividades</a></Table.Cell>                 
-      </div>
+      </React.Fragment>
     );
   }
 };

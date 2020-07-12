@@ -5,7 +5,8 @@ module.exports = {
         'to-do-list': './app/client/to-do-list.js',
         'lista-usuarios': './app/client/lista-usuarios.js',
         'lista-actividades': './app/client/lista-actividades.js',
-        'lista-proveedores': './app/client/lista-proveedores.js'
+        'lista-proveedores': './app/client/lista-proveedores.js',
+        'seguridad':'./app/client/seguridad.js'
     },
     devtool: 'eval-source-map',
     module: {

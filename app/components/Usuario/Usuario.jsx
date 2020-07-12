@@ -4,28 +4,7 @@ const {List,Button} = require('semantic-ui-react');
 
 
 class Usuario extends React.Component {
-  /*  constructor(props) {
-        super(props);
-        this.state = {
-            usuarios: null,
-            loading: true,
-            error: false,
-        };
-        this.handleDelete = this.handleDelete.bind(this);
-    }
-
-  handleDelete(event) {   
-    alert('deletehandle');
-    console.log(`/api/usuario/${this.props.idUsuario}`)
-    fetch(`/api/usuario/${this.props.idUsuario}`, {
-        method: 'DELETE'
-    })
-     .catch(err => console.error(err))
-     .then(() => {
-        alert('borro usuario');
-     })
-  };
-*/
+ 
   render() {
  
     return (

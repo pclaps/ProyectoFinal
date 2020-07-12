@@ -11,17 +11,12 @@ const getSessionUsuario = (req, res, next) => {
     next();
 }
 */
-const validarLogin = (req, res) => {
-
-    const { mail,clave } = req.body;
-    const data = { mail,clave }
-    console.log(req.body);        
-    console.log('validarLogin API: '+ data);
-    //
-    Usuario.validoMailLogin(data)
-            .then(validacion => {
-               res.json({
-                validacion,
+const validarLogin = (req, res) => {   
+    const { email,clave } = req.body;
+    const datalogin = { email,clave };
+    Usuario.validoMailLogin(datalogin)
+            .then(login => {
+               res.json({login,
               });   
             })
          .catch(function(err){  
@@ -29,10 +24,10 @@ const validarLogin = (req, res) => {
             console.log('ocurrio un error '+ err.msg);
             res.json(err);
          })
-
-    //
-    
 }
+
+router.post('/', validarLogin );
+
 const validateParams = (req, res, next) => {
 //    res.juan = 'hola';
     if(isNaN(req.params.id)) {
