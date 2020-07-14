@@ -64,22 +64,21 @@ class ListaProveedores extends React.Component {
         }
         return (
             <div>
-                <Segment inverted textAlign="center">Listado de Proveedores</Segment>                  
-                    <div >                                                
-                        <Link to={`/lista-proveedores`}>Ir a Listado</Link> 
-                        <Button as={Link} to="/lista-proveedores/nuevoproveedor">
-                        Crear Proveedor
-                        </Button>                      
+                <Segment inverted textAlign="center" size='big'>Listado de Proveedores</Segment>                  
+                    <div >   
+                    <Button as={Link} to="/lista-proveedores/nuevoproveedor" floated='right' icon labelPosition='left' primary size='medium'>
+                        <Icon name='plus circle' /> Nuevo Proveedor
+                    </Button>                                                                                                                
                     </div>
                     <Table singleLine>
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>Proveedor</Table.HeaderCell>
-                                <Table.HeaderCell>Descripcion</Table.HeaderCell>
-                                <Table.HeaderCell>Direccion</Table.HeaderCell>
+                                <Table.HeaderCell>Descripción</Table.HeaderCell>
+                                <Table.HeaderCell>Dirección</Table.HeaderCell>
                                 <Table.HeaderCell>Borrar</Table.HeaderCell>
-                                <Table.HeaderCell>Ir a provs</Table.HeaderCell>
-                                <Table.HeaderCell>Actualizar</Table.HeaderCell>
+                                <Table.HeaderCell>Modificar</Table.HeaderCell>
+                                <Table.HeaderCell>Elegir Actividad</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>

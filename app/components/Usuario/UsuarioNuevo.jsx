@@ -114,7 +114,7 @@ class UsuarioNuevo extends React.Component {
                 idProveedor:this.state.idProveedor
             })
         }).then(res => res.json()).then((data) =>{
-
+            console.log('data '+data);
             this.setState({
                 redirect: true
             });
@@ -133,18 +133,15 @@ class UsuarioNuevo extends React.Component {
             <div>               
                 <Segment inverted textAlign="center">Registro de Usuarios</Segment>
                 <Link to={`/lista-usuarios/`}>Ir al listado de Usuarios</Link>       
-                <Form onSubmit={this.handleSubmit} className="flex-container2">     
+                <Form onSubmit={this.handleSubmit}  className="flex-container2">     
                     <Form.Field required>
                           <label>Correo electrónico</label>                          
                           <input placeholder='Email' 
                           value={this.state.email} 
                           onChange={this.handleEmailChange}
-                          error={{
-                            content: 'Please enter a valid email address',
-                            pointing: 'below',
-                          }}/>
+                         />
                     </Form.Field>  
-                    <Form.Field required>
+                    <Form.Field required>                         
                           <label>Contraseña</label>                          
                           <input placeholder='Contraseña' 
                           value={this.state.clave} 

@@ -1,7 +1,7 @@
 const React = require('react');
 const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
-const { Button,Form, Segment,Dropdown,Grid,Header,Message,Image } = require ('semantic-ui-react');
+const { Button,Form, Segment,Dropdown,Grid,Header,Message,Image,Step,Icon } = require ('semantic-ui-react');
 
 class Login extends React.Component {
 
@@ -30,8 +30,7 @@ class Login extends React.Component {
     }
    
     handleSubmit(event) {
-        event.preventDefault();
-        alert('login usuario');
+        event.preventDefault();        
         fetch('/api/login', {
             method: 'POST',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
@@ -39,15 +38,17 @@ class Login extends React.Component {
                 clave: this.state.clave,
                 email: this.state.email,                
             })
-        }).then(res => res.json()).then((data) =>{
-
+        }).then(res => res.json()).then((data) =>{   
+            alert('.then '+ data.usuario);
             this.setState({
                 redirect: true
             });
 
+
         }).catch((err) => {
             alert(err);
-            alert('Ocurrio un error');
+            console.log('error en login');
+            alert('Ocurrio un error componente');
         });
     }
 
@@ -56,7 +57,7 @@ class Login extends React.Component {
             return  window.location="/lista-proveedores"      
         }
         return (
-        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+        <Grid textAlign='center' style={{ height: '100px' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
             <Image src='/logo.png' /> Ingrese en su cuenta
@@ -88,6 +89,41 @@ class Login extends React.Component {
           <Message>
             Crear nuevo usuario? <a href="/lista-usuarios/nuevousuario">Registro</a>
           </Message>
+          <Segment size='big'>
+          <Step.Group>
+                <Step>
+                <Icon name='user' />
+                <Step.Content>
+                    <Step.Title>Registro</Step.Title>
+                    <Step.Description>de usuario</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step active>
+                <Icon name='industry' />
+                <Step.Content>
+                    <Step.Title>Seleccione</Step.Title>
+                    <Step.Description>su proveedor</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step active>
+                <Icon name='sort' />
+                <Step.Content>
+                <Step.Title>Seleccione</Step.Title>
+                    <Step.Description>su actividad</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step active>
+                <Icon name='calendar' />
+                <Step.Content>
+                <Step.Title>Confirme</Step.Title>
+                    <Step.Description>fecha</Step.Description>
+                </Step.Content>
+                </Step>
+            </Step.Group>
+          </Segment>
         </Grid.Column>
       </Grid>
     

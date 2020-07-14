@@ -15,21 +15,24 @@ const validarLogin = (req, res) => {
     const { email,clave } = req.body;
     const datalogin = { email,clave };
     Usuario.validoMailLogin(datalogin)
-            .then(login => {
-               res.json({login,
+            .then(data => { console.log('resultado Validar login '+ data.success + data.msg);
+               res.json({data,
               });   
             })
-         .catch(function(err){  
-            console.log(err);        
-            console.log('ocurrio un error '+ err.msg);
-            res.json(err);
+           .catch(function(err){  
+              console.log(err);        
+              console.log('ocurrio un error API '+ err.msg);
+              res.status(401).json({
+                success: false,
+                msg: err.msg
+              });
+            //res.json(err);
          })
 }
 
 router.post('/', validarLogin );
 
 const validateParams = (req, res, next) => {
-//    res.juan = 'hola';
     if(isNaN(req.params.id)) {
         res.status(404).send({
             success: false,

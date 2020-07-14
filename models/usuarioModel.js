@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 //Defino las funcionalidades para la clase 
 const GETALL_USUARIO ="SELECT * FROM usuario ";
 const GET_USUARIO_BY_ID ="SELECT * FROM usuario WHERE idUsuario = ?";
-const GET_USUARIO_BY_MAIL ="SELECT * FROM usuario WHERE email = ?";
+const GET_CLAVE_BY_MAIL ="SELECT clave FROM usuario WHERE email = ?";
 const SAVE_USUARIO ="INSERT INTO usuario SET ?";
 const DELETE_USUARIO = "DELETE FROM usuario WHERE idUsuario = ?";
 const UPDATE_USUARIO = "UPDATE usuario SET ?  WHERE idUsuario = ?";
@@ -32,34 +32,40 @@ class Usuario {
         console.log('validoMailLogin params BD: '+ email +' : '+ claveLogin);
         
         return new Promise(function(resolve, reject){
-            connection.query(GET_USUARIO_BY_MAIL,[email], (error, result) => {
+            connection.query(GET_CLAVE_BY_MAIL,[email], (error, row) => {
             if (error){         
                 console.log(error);
                 reject(error);                         
             }
-           else {                
-                //console.log(result);                
-                const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = result[0];
-                const hash =clave;
-                console.log(hash);
-                //tengo la clave que esta en la base
-                //definir variable hashTabla = hash 
-                bcrypt.compare(claveLogin,hash,function(error,res){
-                    if (res)  {
-                        console.log('OK');
-                        resolve( 
+            else {          
+                console.log('else')      
+                  if (row==null ||  row[0]==null){  console.log('row null');  
+                    reject (
+                        { success: false,
+                            msg : 'Usuario y/o clave incorrectos',}) 
+                            return;
+                  }    
+                  console.log('luego else')               
+               console.log('result '+ row[0].clave) ;
+               //console.log('result2 ' +row[0]);                                
+               bcrypt.compare(claveLogin,row[0].clave,function(error,resultado){
+                  if (resultado){
+                    console.log('OK');
+                    resolve( 
                             { success: true,
-                                msg : 'usuario registrado',}
-                            ) 
-                    }
-                    else
-                    {
-                        console.log('Error hash');
-                        reject(error);
-                    } 
-                 })
+                               msg : 'usuario registrado',} ) 
                 }
-            })           
+                else {
+                      console.log('Error hash');
+                      reject (
+                            { success: false,
+                                msg : 'Usuario y/o clave incorrectos',}
+                            ) 
+                            //reject(error);
+                } 
+                })                  
+            }
+        })           
     })
 }
 
@@ -126,7 +132,7 @@ class Usuario {
                     reject(error);
                 } else {                                                                            
                     resolve({"success" : "true",
-                             "descripcion": "Usuario creado con exito"
+                             "msg": "Usuario creado con exito"
                              });
                 }
             });
@@ -145,7 +151,7 @@ class Usuario {
                     reject(error);
                 } else {                                                          
                     resolve( {"success" : "true",
-                                "descripcion": "borrado con exito"
+                                "msg": "borrado con exito"
                             }  );
                 }
             });
@@ -161,7 +167,7 @@ class Usuario {
                     reject(error);
                 } else {       console.log('success');                                                     
                     resolve({"success" : "true",
-                              "descripcion": "update Usuario con exito"
+                              "msg": "update Usuario con exito"
                             });
                 }
             });

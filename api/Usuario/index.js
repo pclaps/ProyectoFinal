@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
 const moment = require('moment');
 
-/*
+
 const getSessionUsuario = (req, res, next) => {
 
     if(req.session.user){
@@ -10,29 +10,17 @@ const getSessionUsuario = (req, res, next) => {
     }
     next();
 }
-*/
-const validarLogin = (req, res) => {
 
-    const { mail,clave } = req.body;
-    const data = { mail,clave }
-    console.log(req.body);        
-    console.log('validarLogin API: '+ data);
-    //
-    Usuario.validoMailLogin(data)
-            .then(validacion => {
-               res.json({
-                validacion,
-              });   
-            })
-         .catch(function(err){  
-            console.log(err);        
-            console.log('ocurrio un error '+ err.msg);
-            res.json(err);
-         })
-
-    //
-    
+const autenticarUsuario = (req, res, next) => {
+    //valido que el usuario sea Admin
+         if(req.user == 'Admin'){
+            next();
+         }else{
+             res.sendStatus(401);
+         }
+         
 }
+
 const validateParams = (req, res, next) => {
 //    res.juan = 'hola';
     if(isNaN(req.params.id)) {

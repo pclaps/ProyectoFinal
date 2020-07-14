@@ -1,11 +1,11 @@
 const React = require('react');
-const Actividad = require('./Actividad');
+const Actividad = require('./HorarioActividad');
 const {Link} = require ('react-router-dom');
 const {Segment,List,Icon,Button,Label,Divider, Container, Table} = require('semantic-ui-react');
 
 
-
-class ListaActividades extends React.Component {
+//completarr
+class ListaHorarioActividad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -71,9 +71,7 @@ class ListaActividades extends React.Component {
                         idActividad={actividad.idActividad} 
                         direccion={actividad.direccion}
                         descripcion ={actividad.descripcion}  
-                        cupos={actividad.cuposTotales}
-                        idProveedor={actividad.idProveedor}
-                        />                            
+                        cupos={actividad.cuposTotales}/>                            
                     </Table.Row>  ))
                     }
                     </Table.Body>
@@ -82,4 +80,4 @@ class ListaActividades extends React.Component {
         );
     }
 };
-module.exports = ListaActividades;
+module.exports = ListaHorarioActividad;
