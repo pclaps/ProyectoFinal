@@ -2,6 +2,7 @@ const connection = require('../services/db-connection');
 //Defino las funcionalidades para la clase 
 const GET_HORARIOACTIVIDADES_BY_HORARIO ="SELECT * FROM HORARIOACTIVIDAD WHERE hora = ?";
 const GET_HORARIOACTIVIDADES_BY_ACTIVIDAD ="SELECT * FROM HORARIOACTIVIDAD WHERE idactividad = ?";
+const GET_HORARIOACTIVIDADES_BY_ID ="SELECT * FROM HORARIOACTIVIDAD WHERE idhorarioActividad = ?";
 const GET_HORARIOACTIVIDADES ="SELECT * FROM HORARIOACTIVIDAD";
 const SAVE_HORARIO_ACTIVIDAD ="INSERT INTO HORARIOACTIVIDAD set ?";
 const DELETE_HORARIO_ACTIVIDAD = "DELETE * FROM HORARIOACTIVIDAD WHERE idHorarioActividad = ?";
@@ -9,7 +10,7 @@ const DELETE_HORARIO_ACTIVIDAD = "DELETE * FROM HORARIOACTIVIDAD WHERE idHorario
 
 
 class HORARIOACTIVIDAD {
-    constructor (idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModificacion){       
+    constructor (idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif){       
         this.idHorarioActividad = idHorarioActividad,
         this.dia = dia,
         this.hora = hora,
@@ -17,36 +18,54 @@ class HORARIOACTIVIDAD {
         this.idLocal = idLocal,
         this.idActividad = idActividad,
         this.fechaCreacion = fechaCreacion,
-        this.fechaModificacion = fechaModificacion
+        this.fechaModif = fechaModif
     }
     /*
     Obtengo todos los horariosActividades
     */
     static getHorariosActividades (){
+        console.log('getHorariosActividades');
         return new Promise(function(resolve, reject){
             connection.query(GET_HORARIOACTIVIDADES,function(error,results){
                 if (error){                
                     reject(error);
                 } else {                                     
                     console.log(results);                
-                    resolve(results.map((HorarioActividad) => {
-                        const {idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModificacion} = results[0];//aca tengo los nombres posta                    
-                        resolve(new HORARIOACTIVIDAD(idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModificacion));
+                    resolve(results.map((horario) => {
+                        const {idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif} =horario;//aca tengo los nombres posta                    
+                        return(new HORARIOACTIVIDAD(idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif));
                     }));
                 }
             });
         })
     }
 
-    static getHorariosActividadesByActividad (id){
+static getHorariosActividadesByActividad (id){
+        console.log('getHorariosActividadesByActividad BD '+id);
         return new Promise(function(resolve, reject){
             connection.query(GET_HORARIOACTIVIDADES_BY_ACTIVIDAD,[id],function(error,results){
                 if (error){
                     console.log(error);
                     reject(error);
                 } else {                   
-                    const {idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModificacion} = results[0];//aca tengo los nombres posta                    
-                    resolve(new HORARIOACTIVIDAD(idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModificacion));
+                    resolve(results.map((horario) => {
+                        const {idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif} =horario;//aca tengo los nombres posta                    
+                        return(new HORARIOACTIVIDAD(idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif));
+                    }));
+                }
+            });
+        })
+    }
+    static getHorariosActividadesByID (id){
+        console.log('getHorariosActividadesByID '+ id);
+        return new Promise(function(resolve, reject){
+            connection.query(GET_HORARIOACTIVIDADES_BY_ID,[id],function(error,results){
+                if (error){
+                    console.log(error);
+                    reject(error);
+                } else {                   
+                    const {idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif} = results[0];//aca tengo los nombres posta                    
+                    resolve(new HORARIOACTIVIDAD(idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif));
                 }
             });
         })
@@ -59,30 +78,34 @@ class HORARIOACTIVIDAD {
                     console.log(error);
                     reject(error);
                 } else {                   
-                    const {idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModificacion} = results[0];//aca tengo los nombres posta                    
-                    resolve(new HORARIOACTIVIDAD(idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModificacion));
+                    const {idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif} = results[0];//aca tengo los nombres posta                    
+                    resolve(new HORARIOACTIVIDAD(idHorarioActividad, dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif));
                 }
             });
         })
     }*/
 
     static guardarHorarioActividad(data){
+
+        //Deberia validar si viene alguna FK por ejemplo IdActividad e IdLocal que no existan
+        
         return new Promise(function(resolve, reject){            
-            const HorActividad = data ;
-            connection.query(SAVE_HORARIO_ACTIVIDAD,[HorActividad],function(error,results){
+            const horActividad = data ;
+            connection.query(SAVE_HORARIO_ACTIVIDAD,[horActividad],function(error,results){
                 if (error){
                     console.log(error);
                     reject(error);
-                } else {                                                                            
+                } else {                                   
+                    console.log('Se creo HOrario Actividad exitosamente');
                     resolve({"success" : "true",
-                             "descripcion": "HoarioActividad creado con exito"
+                             "descripcion": "HorarioActividad creado con exito"
                     });
                 }
             });
         })
     }
 
-    static deleteHoraroActividad(id){        
+    static deleteHorarioActividad(id){        
         return new Promise(function(resolve, reject){
             connection.query(DELETE_HORARIO_ACTIVIDAD,[id],function(error,results){
                 if (error){

@@ -45,7 +45,7 @@ class ListaActividades extends React.Component {
             <div>
                 <Segment inverted textAlign="center">Seleccionar Actividad</Segment>                  
                     <div >                                                
-                        <Button color='green' inverted  as={Link} to="/lista-actividades">Lista Actividades</Button>
+                        <Button color='blue' inverted  as={Link} to="/lista-actividades">Lista Actividades</Button>
                         <Button as={Link} to="/lista-actividades/nuevaactividad" floated='right' icon labelPosition='left' primary size='medium'>
                              <Icon name='plus circle' /> Nueva Actividad
                         </Button> 

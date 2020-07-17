@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const Actividad = require('../../models/HorarioActividadModel');
-
+const HorarioActividad = require('../../models/HorarioActividadModel');
+const moment = require('moment');
 
 const validateParams = (req, res, next) => {
     if(isNaN(req.params.id)) {
@@ -15,46 +15,49 @@ const validateParams = (req, res, next) => {
 
 
 const getAllHorarioActividad=(req,res)=>{   
-    
-    if (req.query.idProveedor){
-        console.log('getTodasActividadporProveedor API');
-        const id = req.query.idProveedor;   
-        Actividad.getTodasActividadporProveedor(id)
-        .then(listActividades =>{   
-        res.json({listActividades})
-        console.log(listActividades);
+    //busco los horarios segun actividad
+    console.log('getAllHorarioActividad API:  '+req.query.idActividad);
+
+    if (req.query.idActividad){
+        console.log('getHorariosActividadesByActividad API');
+        const id = req.query.idActividad;   
+        HorarioActividad.getHorariosActividadesByActividad(id)
+        .then(listHorarioActividad =>{   
+        res.json({listHorarioActividad})
+        console.log('lista '+ listHorarioActividad);
     })
     .catch(function(err){  
         console.log(err);
-        console.log('ocurrio un error en getTodasActividadporProveedor');
+        console.log('ocurrio un error en getHorariosActividadesByActividad');
         res.json(err);
     })
     }
     else
     {
-        console.log('getAllActividad API');
-        Actividad.getTodasActividad()
-        .then(listActividades =>{   
-            res.json({listActividades})
-            console.log(listActividades);;
+        console.log('getHorariosActividades API');
+        HorarioActividad.getHorariosActividades()
+        .then(listHorarioActividad =>{   
+            res.json({listHorarioActividad})
+            console.log(listHorarioActividad);;
         })
         .catch(function(err){  
             console.log(err);
-            console.log('ocurrio un error en getAllActividad');
+            console.log('ocurrio un error en getHorariosActividades');
             res.json(err);
         })
     }
     
 };
 
-router.get('/', getAllActividad);
+router.get('/', getAllHorarioActividad);
 
 //Obtengo un Tipo de Actividad por ID
-const getActividad=(req,res)=>{    
+const getHorariosByID=(req,res)=>{    
+    console.log('getHorariosByID'+req.params);
     const { id } = req.params;     
-    Actividad.getUnaActividad(id)
-    .then(function(actividad){        
-        res.json(actividad);
+    HorarioActividad.getHorariosActividadesByID(id)
+    .then(function(horario){        
+        res.json(horario);
     })
     .catch(function(err){  
         console.log(err);
@@ -62,32 +65,36 @@ const getActividad=(req,res)=>{
         res.json(err);
     })
 };
-router.get('/:id', getActividad);
+router.get('/:id', getHorariosByID);
 
 //Guardo un Tipo de Actividad
-const saveActividad=(req,res)=>{
-    const {descripcion , imagen } = req.body;
-    const data = {descripcion, imagen};
-    Actividad.guardarActividad(data)
-    .then(function(actividad){
-        console.log(actividad);
-        res.json(actividad);    
+const saveHorarioActividad=(req,res)=>{
+
+    const {dia,hora,mes,idLocal,idActividad,fecC,fecM } = req.body;    
+    const fechaCreacion= moment(fecC).format();
+    const fechaModif= moment(fecM).format();
+    const data = {dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif};
+
+    HorarioActividad.guardarHorarioActividad(data)
+    .then(function(horario){
+        console.log('horario :'+horario);
+        res.json(horario);    
     })
     .catch(function(err){  
         console.log(err)    ;
-        console.log('ocurrio un error en saveActividad');
+        console.log('ocurrio un error en saveHorarioActividad');
         res.json(err);
     })
 };
-router.post('/', saveActividad );
+router.post('/', saveHorarioActividad );
 
-const deleteActividad=(req,res)=>{
+const deleteHorActividad=(req,res)=>{
     const { id } = req.params; // igual a     const id = req.params.id;
    
-    Actividad.deleteActividad(id)
-    .then(function(actividad){
-        console.log(actividad);
-        res.json(actividad);    
+    HorarioActividad.deleteHorarioActividad(id)
+    .then(function(horactividad){
+        console.log(horactividad);
+        res.json(horactividad);    
     })
     .catch(function(err){  
         console.log(err)    ;
@@ -96,24 +103,28 @@ const deleteActividad=(req,res)=>{
     })
 }
 
-router.delete('/:id',validateParams,deleteActividad);
+router.delete('/:id',validateParams,deleteHorActividad);
 
 //para el post
-const updateActividad=(req,res)=>{
+const updateHorarioActividad=(req,res)=>{
 
     const { id } = req.params; 
-    const newActividad = req.body;
-    console.log(newActividad);    
-    connection.query('UPDATE Actividad set ?  WHERE id = ?',[newActividad,id],(err, rows)=>{
-         if (err){
-         // console.log('error Actividad');
-             res.json(err);
-         }
-         console.log(rows);
-         console.log(success);
-    }); 
+    const {dia,hora,mes,idLocal,idActividad,fecC,fecM } = req.body;    
+    const fechaCreacion= moment(fecC).format();
+    const fechaModificacion= moment(fecM).format();
+
+    const dataHorario = {dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModificacion};
+    Usuario.updateUsuario(dataHorario,id)
+           .then(function(horario){
+              //console.log(Usuario);
+                res.json(horario);    
+            })
+            .catch(function(err){  
+                console.log('ocurrio un error en Update HorarioActividad');
+                res.json(err);
+            })
 }
-router.put('/:id',validateParams,updateActividad);
+router.put('/:id',validateParams,updateHorarioActividad);
 
 module.exports = router;
 

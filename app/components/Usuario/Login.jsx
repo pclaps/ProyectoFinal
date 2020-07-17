@@ -2,6 +2,7 @@ const React = require('react');
 const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
 const { Button,Form, Segment,Dropdown,Grid,Header,Message,Image,Step,Icon } = require ('semantic-ui-react');
+const LayoutMio = require('../Layout/');
 
 class Login extends React.Component {
 
@@ -9,7 +10,8 @@ class Login extends React.Component {
         super(props);
         this.state = {
             clave:'',
-            email:'',                   
+            email:'',
+            error:'',
             redirect: null
         };
         //Defino Handlers
@@ -39,12 +41,19 @@ class Login extends React.Component {
                 email: this.state.email,                
             })
         }).then(res => res.json()).then((data) =>{   
-            alert('.then '+ data.usuario);
-            this.setState({
-                redirect: true
-            });
-
-
+            if (data){
+              if (data.msg){
+                alert('Error :'+ data.msg);
+              }else{
+                this.setState({
+                  redirect: true
+                }); 
+              }
+            }else{
+                alert("No existe usuario");
+            }
+           
+    
         }).catch((err) => {
             alert(err);
             console.log('error en login');
@@ -56,7 +65,9 @@ class Login extends React.Component {
         if (this.state.redirect) {                       
             return  window.location="/lista-proveedores"      
         }
-        return (
+        
+        return (       
+      <LayoutMio> <div>
         <Grid textAlign='center' style={{ height: '100px' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
@@ -126,7 +137,8 @@ class Login extends React.Component {
           </Segment>
         </Grid.Column>
       </Grid>
-    
+      </div>
+      </LayoutMio>    
            
         );
     }

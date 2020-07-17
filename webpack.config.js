@@ -6,7 +6,8 @@ module.exports = {
         'lista-usuarios': './app/client/lista-usuarios.js',
         'lista-actividades': './app/client/lista-actividades.js',
         'lista-proveedores': './app/client/lista-proveedores.js',
-        'seguridad':'./app/client/seguridad.js'
+        'seguridad':'./app/client/seguridad.js',
+        'lista-horarioactividad': './app/client/lista-horarioactividad.js',
     },
     devtool: 'eval-source-map',
     module: {

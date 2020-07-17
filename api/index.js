@@ -6,6 +6,7 @@ const UsuarioRouter = require('./usuario');
 const LoginRouter = require('./login');
 const ActividadRouter = require('./actividad');
 const ProveedorRouter = require('./proveedor');
+const HorarioActividad = require('./horarioactividad');
 const { apiErrorHandler } = require('../middlewares/error-handler');
 const { route } = require('./tasks');
  
@@ -17,6 +18,7 @@ router.use('/usuario',UsuarioRouter);
 router.use('/actividad',ActividadRouter);
 router.use('/proveedor',ProveedorRouter);
 router.use('/login',LoginRouter);
+router.use('/horarioactividad',HorarioActividad);
 router.use(apiErrorHandler);
 
 module.exports = router;

@@ -2,7 +2,9 @@ const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
 const moment = require('moment');
 
-/*
+const {appAutorizacionHandler} = require('../../middlewares/autorizacion-handler');
+
+
 const getSessionUsuario = (req, res, next) => {
 
     if(req.session.user){
@@ -10,27 +12,44 @@ const getSessionUsuario = (req, res, next) => {
     }
     next();
 }
-*/
-const validarLogin = (req, res) => {   
+
+//router.get('/', getSessionUsuario);
+
+const validarLogin = (req, res,next) => {   
+   console.log('validarLogin API');
     const { email,clave } = req.body;
     const datalogin = { email,clave };
     Usuario.validoMailLogin(datalogin)
-            .then(data => { console.log('resultado Validar login '+ data.success + data.msg);
-               res.json({data,
-              });   
+            .then(login => { console.log('resultado Validar login '+ login.success + login.msg);           
+            /*if(req.session.user){
+                console.log('session '+ req.session.user);
+                req.user = req.session.user;
+            }*/
+            if (req.session.email)
+                console.log('datos del body '+req.session.email);
+            else  
+                console.log('no existe req.session.email');   
+            req.session.email=email;
+            console.log('session '+ req.session.email);
+               res.json({login,});   
+               next();
             })
+           
            .catch(function(err){  
               console.log(err);        
               console.log('ocurrio un error API '+ err.msg);
-              res.status(401).json({
-                success: false,
-                msg: err.msg
+          //    const login={'success': false,
+            //                'msg': err.msg}                         
+              res.status(401).json( {
+                'success': false,
+                'msg': err.msg
               });
             //res.json(err);
+            next();
          })
 }
 
-router.post('/', validarLogin );
+router.post('/', validarLogin,appAutorizacionHandler );
 
 const validateParams = (req, res, next) => {
     if(isNaN(req.params.id)) {

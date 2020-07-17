@@ -11,6 +11,7 @@ const View = require('./view');
 router.get('/*', (req, res, next) => {
     const user = req.session.user;
     const initialState = {};
+    console.log('Autenticacion index '+ user);
     const context = {
         currentuser: {...user}
     };

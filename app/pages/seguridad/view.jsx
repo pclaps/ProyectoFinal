@@ -3,11 +3,12 @@ const { Route } = require('react-router-dom');
 const UsuarioNuevo = require('../../components/Usuario/UsuarioNuevo');
 const Login = require('../../components/Usuario/Login');
 
-//console.log('ListaUsuariosPage-view');
+console.log('ListaUsuariosPage-view');
 
 class SeguridadPage extends React.Component {
     render() {
         const { usuarios } = this.props.initialState;       
+        console.log('usuarios: '+ usuarios);
         return (
             <React.Fragment>                          
                  <Route

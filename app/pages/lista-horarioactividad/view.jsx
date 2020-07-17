@@ -4,17 +4,17 @@ const HorarioActividad = require('../../components/HorarioActividad/HorarioActiv
 const HorarioActividadNueva = require('../../components/HorarioActividad/HorarioActividadNueva')
 const ListaHorarioActividad = require('../../components/HorarioActividad/ListaHorarioActividad');
 
-//console.log('ListaUsuariosPage-view');
+console.log('ListaUsuariosPage-view');
 
-class ListaActividadesPage extends React.Component {
+class ListaHorarioActividadPage extends React.Component {
     render() {
-        const { actividades } = this.props.initialState;       
+        const { horarios } = this.props.initialState;       
         return (
             <React.Fragment>               
                  <Route
                     exact
                     path="/lista-horarioactividad"
-                    render={(props) => <ListaHorarioActividad {...props} actividades={actividades}/>}
+                    render={(props) => <ListaHorarioActividad {...props} horarios={horarios}/>}
                 />
                  <Route
                     exact
@@ -24,16 +24,16 @@ class ListaActividadesPage extends React.Component {
                    <Route
                     exact
                     path="/lista-horarioactividad/horarioactividad/:id"
-                    render={(props) => <HorarioActividad {...props} actividades={actividades}/>}
+                    render={(props) => <HorarioActividad {...props} horarios={horarios}/>}
                 />
                  <Route
                     exact
-                    path="/lista-actividades/nuevaactividad"
-                    render={(props) => <HorarioActividadNueva {...props} actividades={actividades}/>}
+                    path="/lista-horarioactividad/nuevohorario"
+                    render={(props) => <HorarioActividadNueva {...props} horarios={horarios}/>}
                 />
             </React.Fragment>
         );
     }
 };
 
-module.exports = ListaActividadesPage;
+module.exports = ListaHorarioActividadPage;

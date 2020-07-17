@@ -2,7 +2,7 @@ const router = require('express').Router();
 const React = require('react');
 const {StaticRouter} = require('react-router-dom');
 const {renderToString} = require('react-dom/server');
-const Actividad = require('../../../models/actividadModel');
+const HorarioActividad = require('../../../models/HorarioActividadModel');
 const View = require('./view');
 
 // https://www.digitalocean.com/community/tutorials/react-react-router-ssr
@@ -19,8 +19,8 @@ router.get('/*', (req, res, next) => {
     );
 
     res.render('template', {
-        pageName: 'lista-actividades',
-        pageTitle: 'Lista de Actividades',
+        pageName: 'lista-horarioactividad',
+        pageTitle: 'Lista de Horarios',
         host: 'http://localhost:3000',
         initialState,
         content

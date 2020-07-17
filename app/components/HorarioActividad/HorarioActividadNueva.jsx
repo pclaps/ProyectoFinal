@@ -93,7 +93,7 @@ class HorarioActividadNueva extends React.Component {
                 <Link to={`/lista-horarioactividad/`}>Ir al listado</Link>               
                 <Form onSubmit={this.handleSubmit} className="flex-container2">     
                     <Form.Field>                                                                     
-                          <label>Descripcion</label>
+                          <label>Día</label>
                           <input placeholder='dia' 
                           value={this.state.dia} 
                           onChange={this.handleDiaChange}/>
@@ -111,7 +111,13 @@ class HorarioActividadNueva extends React.Component {
                           onChange={this.handleMesChange}/>
                     </Form.Field>  
                     <Form.Field>
-                          <label>Imagen</label>
+                          <label>Id Local</label>
+                          <input placeholder='idLocal' 
+                          value={this.state.idLocal} 
+                          onChange={this.handleIdLocalChange}/>
+                    </Form.Field>                  
+                    <Form.Field>
+                          <label>Id Actividad</label>
                           <input placeholder='idActividad' 
                           value={this.state.idActividad} 
                           onChange={this.handleIdActividadChange}/>
@@ -124,4 +130,4 @@ class HorarioActividadNueva extends React.Component {
     }
 };
 
-module.exports = HorarioActividad;
+module.exports = HorarioActividadNueva;

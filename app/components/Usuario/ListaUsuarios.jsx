@@ -79,7 +79,11 @@ class ListaUsuarios extends React.Component {
                 <ul>
                     {
                         usuarios.map(usuario => (
-                            <Usuario key={usuario.idUsuario} idUsuario={usuario.idUsuario} nombreUsuario ={usuario.nombreUsuario} email={usuario.email} onDeleteUsuario={this.onDeleteUsuario} />
+                            <Usuario key={usuario.idUsuario} 
+                            idUsuario={usuario.idUsuario} 
+                            nombreUsuario ={usuario.nombreUsuario} 
+                            email={usuario.email} 
+                            onDeleteUsuario={this.onDeleteUsuario} />
                         ))
                     }
                 </ul>
