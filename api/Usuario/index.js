@@ -67,11 +67,10 @@ const getUsuario=(req,res)=>{
 router.get('/:id', getUsuario);
 
 const saveUsuario=(req,res)=>{
-    console.log('saveUsuario');
     const {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,rol,direccion } = req.body;    
     const dataUsu = {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,rol,direccion};
-    console.log(dataUsu);
-    console.log('guardarUsuario');
+    
+    console.log('guardarUsuario API: '+dataUsu);
     Usuario.guardarUsuario(dataUsu)
      .then(function(Usuario){
         res.json(Usuario);    

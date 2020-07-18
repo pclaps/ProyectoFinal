@@ -128,9 +128,9 @@ class UsuarioEditar extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();   
-        alert(this.state.usuario.rol)   
+     //   alert(this.state.usuario.rol)   
         //fetch(`/api/usuario/${this.props.id}`, { //asi accedo a la propiedad del padre
-            console.log(`/api/usuario/${this.state.usuario.idUsuario}`)
+            //console.log(`/api/usuario/${this.state.usuario.idUsuario}`)
         fetch(`/api/usuario/${this.state.usuario.idUsuario}`, {
             method: 'PUT',
             headers : { "Content-Type" : "application/json; charset=utf-8"},

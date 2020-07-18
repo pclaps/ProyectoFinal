@@ -14,14 +14,36 @@ class ListaHorarioActividad extends React.Component {
             loading: true,
             error: false,
         };
+
+        this.onAgendarHorario = this.onAgendarHorario.bind(this);
     }
     //Para elegir horario
-    onElegirHorario(idUsuario){
-        console.log('Actividad Agendada');
+    onAgendarHorario(idHorarioActividad){
+        console.log('Crear Actividad Agendada: '+idHorarioActividad);
+        
+        fetch(`/api/horarioactividad/${idHorarioActividad}`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            // body: JSON.stringify(data) // body data type must match "Content-Type" header
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('response', data);
+            //refresco la lista , trayendo nuevamente los datos
+            //this.onRefresh();
+          });
     }
 
     componentDidMount() { 
-        alert('lista'+this.props.idActividad)  ;     
+        alert('lista HorAct'+this.props.idActividad)  ;     
         const url= this.props.idActividad ?`/api/horarioactividad?idActividad=${this.props.idActividad}`:`/api/horarioactividad`;         
         fetch(url)
             .then(res => res.json()).then((data) =>{              
@@ -78,7 +100,9 @@ class ListaHorarioActividad extends React.Component {
                         hora ={horario.hora}  
                         mes={horario.mes}
                         idLocal={horario.idLocal}
-                        idActividad={horario.idActividad}/>                            
+                        idActividad={horario.idActividad}
+                        onAgendarHorario={this.onAgendarHorario}
+                            />                            
                     </Table.Row>  ))
                   }
                    </Table.Body>

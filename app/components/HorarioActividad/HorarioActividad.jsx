@@ -12,10 +12,9 @@ class HorarioActividad extends React.Component {
           <Table.Cell>{this.props.hora}</Table.Cell>
           <Table.Cell>{this.props.mes}</Table.Cell>     
           <Table.Cell>{this.props.idLocal}</Table.Cell>     
-          <Table.Cell>{this.props.idActividad}</Table.Cell> 
-          <Table.Cell>
-            <Button color='green' inverted onClick={ ()=>this.props.onElegirHorario(this.props.idHorarioActividad)}>Seleccionar</Button>
-            <Checkbox> Selected</Checkbox>
+          <Table.Cell>{this.props.idActividad}</Table.Cell>           
+          <Table.Cell>            
+            <Button color='green' inverted onClick={ ()=>this.props.onAgendarHorario(this.props.idHorarioActividad)}>Seleccionar</Button>            
           </Table.Cell>      
           <Table.Cell>
                   <a href= {`/lista-horarioactividad/actividad/${this.props.idActividad}`}>Ir a Actividad</a>                                                    

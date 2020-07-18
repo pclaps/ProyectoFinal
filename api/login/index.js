@@ -32,7 +32,7 @@ const validarLogin = (req, res,next) => {
             req.session.email=email;
             console.log('session '+ req.session.email);
                res.json({login,});   
-               next();
+               //next();
             })
            
            .catch(function(err){  
@@ -45,7 +45,7 @@ const validarLogin = (req, res,next) => {
                 'msg': err.msg
               });
             //res.json(err);
-            next();
+            //next();
          })
 }
 

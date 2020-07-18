@@ -72,8 +72,7 @@ class ProveedorNuevo extends React.Component {
                           <input placeholder='Descripcion' 
                           value={this.state.descripcion} 
                           onChange={this.handleDescripcionChange}/>
-                    </Form.Field>  
-                                   
+                    </Form.Field>                                     
                     <Form.Field>
                           <label>Direccion</label>
                           <input placeholder='direccion' 

@@ -3,9 +3,6 @@ const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
 const { Button,Form, Segment } = require ('semantic-ui-react');
 
-
-///FORMULARIO DE NUEVA ACTIVIDAD
-
 class ActividadNueva extends React.Component {
 
     constructor(props) {
@@ -51,13 +48,7 @@ class ActividadNueva extends React.Component {
             imagen: event.target.value
         });
     }
-    
-    handleIdUsuarioChange(event) {
-        this.setState({
-            idUsuarioResp: event.target.value
-        });
-    }
-
+ 
     handleIdUsuarioRespChange(event) {
         this.setState({
             idUsuarioResp: event.target.value
@@ -70,7 +61,7 @@ class ActividadNueva extends React.Component {
         });
     }
 
-
+    
     handleSubmit(event) {
         event.preventDefault();
         alert('nuevo actividad');
@@ -81,7 +72,7 @@ class ActividadNueva extends React.Component {
                 descripcion:this.state.descripcion,
                 tipoActividad:this.state.tipoActividad,
                 cuposTotales:this.state.cuposTotales,
-                imagen:this.state.imagen,
+                imagen:this.state.imagen,               
                 idUsuarioResp:this.state.idUsuarioResp,
                 idProveedor:this.state.idProveedor
             })
@@ -95,16 +86,26 @@ class ActividadNueva extends React.Component {
             alert('Ocurrio un error');
         });
     }
-
+/* onRefresh() {
+        console.log('onRefresh');
+        fetch(`/api/proveedor/`)
+        .then(res => res.json()).then((data) =>{
+            this.setState({
+                proveedores: data.listProvs,
+                loading: false,
+                error: false,
+            });
+        });
+    } */
     render() {
         if (this.state.redirect) {
-            return <Redirect to="/lista-actividades" />
+            alert('redirect true');
+            return  window.location=="/lista-actividades"
         }
         return (
-            <div>
-               
+            <div>               
                 <Segment inverted textAlign="center">Registro de Actividades</Segment>
-                <Link to={`/lista-actividades/`}>Ir al listado</Link>               
+                <Link to={`/lista-actividades/`}>Ir a lista de Actividades</Link>               
                 <Form onSubmit={this.handleSubmit} className="flex-container2">     
                     <Form.Field>                                                                     
                           <label>Descripcion</label>
@@ -121,8 +122,8 @@ class ActividadNueva extends React.Component {
                     <Form.Field>
                           <label>Cupos Totales</label>
                           <input placeholder='cuposTotales' 
-                          value={this.state.apellidoUsuario} 
-                          onChange={this.handleApellidoChange}/>
+                          value={this.state.cuposTotales} 
+                          onChange={this.handleCuposTotalesChange}/>
                     </Form.Field>  
                     <Form.Field>
                           <label>Imagen</label>
@@ -131,18 +132,18 @@ class ActividadNueva extends React.Component {
                           onChange={this.handleImagenChange}/>
                     </Form.Field>  
                     <Form.Field>
-                          <label>idUsuarioResp</label>
+                          <label>Usuario Responsable</label>
                           <input placeholder='idUsuarioResp' 
                           value={this.state.idUsuarioResp} 
-                          onChange={this.handleidUsuarioRespChange}/>
-                    </Form.Field>                   
+                          onChange={this.handleIdUsuarioRespChange}/>
+                    </Form.Field>                         
                     <Form.Field>
                           <label>Proveedor</label>
                           <input placeholder='idProveedor' 
                           value={this.state.idProveedor} 
                           onChange={this.handleIdProveedorChange}/>
                     </Form.Field>   
-                    <Form.Button primary >Crear ACTIVIDAD</Form.Button>                   
+                    <Form.Button primary >Crear Actividad</Form.Button>                   
                 </Form>
             </div>
         );

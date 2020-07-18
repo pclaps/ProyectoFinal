@@ -2,7 +2,7 @@ const React = require('react');
 const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
 const { Button,Form, Segment,Dropdown,Grid,Header,Message,Image,Step,Icon } = require ('semantic-ui-react');
-const LayoutMio = require('../Layout/');
+//const LayoutMio = require('../Layout/');
 
 class Login extends React.Component {
 
@@ -66,8 +66,7 @@ class Login extends React.Component {
             return  window.location="/lista-proveedores"      
         }
         
-        return (       
-      <LayoutMio> <div>
+        return (    
         <Grid textAlign='center' style={{ height: '100px' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
@@ -90,8 +89,7 @@ class Login extends React.Component {
                 value={this.state.clave} 
                 onChange={this.handleClaveChange}
                 type='password'
-              />
-    
+              />    
               <Button color='teal' fluid size='large'>
                 Login
               </Button>
@@ -100,9 +98,9 @@ class Login extends React.Component {
           <Message>
             Crear nuevo usuario? <a href="/lista-usuarios/nuevousuario">Registro</a>
           </Message>
-          <Segment size='big'>
-          <Step.Group>
-                <Step>
+          <Grid size='huge'   style={{ maxWidth: 600 }}>
+          <Step.Group >
+                <Step active>
                 <Icon name='user' />
                 <Step.Content>
                     <Step.Title>Registro</Step.Title>
@@ -110,7 +108,7 @@ class Login extends React.Component {
                 </Step.Content>
                 </Step>
 
-                <Step active>
+                <Step >
                 <Icon name='industry' />
                 <Step.Content>
                     <Step.Title>Seleccione</Step.Title>
@@ -118,7 +116,7 @@ class Login extends React.Component {
                 </Step.Content>
                 </Step>
 
-                <Step active>
+                <Step >
                 <Icon name='sort' />
                 <Step.Content>
                 <Step.Title>Seleccione</Step.Title>
@@ -126,7 +124,7 @@ class Login extends React.Component {
                 </Step.Content>
                 </Step>
 
-                <Step active>
+                <Step >
                 <Icon name='calendar' />
                 <Step.Content>
                 <Step.Title>Confirme</Step.Title>
@@ -134,11 +132,11 @@ class Login extends React.Component {
                 </Step.Content>
                 </Step>
             </Step.Group>
-          </Segment>
+          </Grid>
         </Grid.Column>
       </Grid>
-      </div>
-      </LayoutMio>    
+   
+      
            
         );
     }

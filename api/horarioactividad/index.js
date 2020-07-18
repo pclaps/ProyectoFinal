@@ -2,6 +2,7 @@ const router = require('express').Router();
 const HorarioActividad = require('../../models/HorarioActividadModel');
 const moment = require('moment');
 
+console.log('horario actividad API');
 const validateParams = (req, res, next) => {
     if(isNaN(req.params.id)) {
         res.status(404).send({
@@ -69,7 +70,7 @@ router.get('/:id', getHorariosByID);
 
 //Guardo un Tipo de Actividad
 const saveHorarioActividad=(req,res)=>{
-
+    console.log('saveHorarioActividad');
     const {dia,hora,mes,idLocal,idActividad,fecC,fecM } = req.body;    
     const fechaCreacion= moment(fecC).format();
     const fechaModif= moment(fecM).format();

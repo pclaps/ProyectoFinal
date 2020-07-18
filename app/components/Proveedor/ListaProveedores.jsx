@@ -88,7 +88,8 @@ class ListaProveedores extends React.Component {
                                 <Proveedor key={proveedor.idProveedor}
                                         idProveedor={proveedor.idProveedor} 
                                         descripcion ={proveedor.descripcion} 
-                                        direccion={proveedor.direccion} />                                                     
+                                        direccion={proveedor.direccion}
+                                        onDeleteProveedor={this.onDeleteProveedor} />                                                     
                             </Table.Row>))    
                          }
                         </Table.Body>

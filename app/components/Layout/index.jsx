@@ -7,6 +7,7 @@ class LayoutMio extends React.Component {
         return (
             <div>
                 <HeaderMio currentUser={this.props.currentUser}/>
+                <div>LAYOUTTTTTTTTTTTTTTTTTTTTTTTT</div>
                 <div className="page-content">
                     {this.props.children}
                 </div>

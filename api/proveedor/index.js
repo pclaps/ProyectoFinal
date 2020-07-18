@@ -74,7 +74,7 @@ router.post('/', saveProveedor );
 const deleteProveedor=(req,res)=>{
     const { id } = req.params; // igual a     const id = req.params.id;
    
-    Proveedor.deleteTipAct(id)
+    Proveedor.deleteProv(id)
     .then(function(proveedor){
         console.log(proveedor);
         res.json(proveedor);    

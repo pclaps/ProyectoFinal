@@ -2,7 +2,7 @@ const React = require('react');
 const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
 const { Button,Form, Segment } = require ('semantic-ui-react');
-const HorarioActividad = require('./HorarioActividad');
+//const HorarioActividad = require('./HorarioActividad');
 
 
 ///FORMULARIO DE NUEVA ACTIVIDAD
@@ -85,7 +85,7 @@ class HorarioActividadNueva extends React.Component {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to="/lista-horarioactividad" />
+            return  window.location=="/lista-horarioactividad" 
         }
         return (
             <div>               

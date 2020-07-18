@@ -16,6 +16,7 @@ router.use(appAutorizacionHandler);
 router.use('/to-do-list', todoListRouter);
 router.use('/lista-usuarios', ListaUsuarioRouter);
 router.use('/lista-actividades', ListaActividadesRouter);
+//router.use('/lista-actividades',appAutorizacionHandler, ListaActividadesRouter);
 router.use('/lista-proveedores',ListaProveedorRouter);
 router.use('/seguridad', LoginRouter);
 router.use('/lista-horarioactividad',HorarioRouter);

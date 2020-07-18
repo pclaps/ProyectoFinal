@@ -52,14 +52,15 @@ class ProveedorEditar extends React.Component {
                 direccion: this.state.proveedor.direccion,                
             })
         }).then(res => res.json())  
-          .then((data) =>{
-            this.setState({
-                redirect: true
-            });
-
-
-        })
-    }
+        .then((data) =>{
+          this.setState({
+              redirect: true
+          });
+      }).catch((err) => {
+          alert(err);
+          alert('Ocurrio un error');
+      });
+  }
 
     componentDidMount() {              
         fetch(`/api/proveedor/${this.props.id}`, {

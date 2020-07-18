@@ -13,8 +13,33 @@ class ListaActividades extends React.Component {
             loading: true,
             error: false,
         };
+        this.onDeleteActividad = this.onDeleteActividad.bind(this);
     }
 
+    onDeleteActividad(idActividad){
+        console.log("borrar usuario", idActividad);
+        // Despues que se legue al eliminar y todo este ok
+
+        fetch(`/api/actividad/${idActividad}`, {
+            method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            // body: JSON.stringify(data) // body data type must match "Content-Type" header
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('response', data);
+            //refresco la lista , trayendo nuevamente los datos
+            this.onRefresh();
+          });
+    }
     componentDidMount() {        
         const url= this.props.idProveedor ?`/api/actividad?idProveedor=${this.props.idProveedor}`:`/api/actividad`;        
         console.log(url);
@@ -73,6 +98,7 @@ class ListaActividades extends React.Component {
                         descripcion ={actividad.descripcion}  
                         cupos={actividad.cuposTotales}
                         idProveedor={actividad.idProveedor}
+                        onDeleteActividad ={this.onDeleteActividad}
                         />                            
                     </Table.Row>  ))
                     }

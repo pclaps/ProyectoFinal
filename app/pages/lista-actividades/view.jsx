@@ -29,7 +29,7 @@ class ListaActividadesPage extends React.Component {
                  <Route
                     exact
                     path="/lista-actividades/nuevaactividad"
-                    render={(props) => <Actividad {...props} actividades={actividades}/>}
+                    render={(props) => <ActividadNueva {...props} actividades={actividades}/>}
                 />
             </React.Fragment>
         );

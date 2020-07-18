@@ -61,8 +61,9 @@ class ListaUsuarios extends React.Component {
         const usuarios  = this.state.usuarios;
         if (this.state.loading) {
             return <div>                 
-                 Cargando Usuarios ...
-                 <Icon loading name='spinner' size="huge" /></div>
+                     Cargando Usuarios ...
+                     <Icon loading name='spinner' size="huge" />
+                   </div>
         }
         return (
             <div>

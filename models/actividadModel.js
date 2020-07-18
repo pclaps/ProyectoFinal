@@ -1,12 +1,12 @@
 const connection = require('../services/db-connection');
 //Defino las funcionalidades para la clase 
 const GET_ACTIVIDADES_BY_ACTIVIDAD ="SELECT * FROM ACTIVIDAD WHERE name = ?";
-//const SAVE_ACTIVIDAD ="INSERT INTO ACTIVIDAD set name=?,description=?,image_id=?,password=?,usuario=?";
 const SAVE_ACTIVIDAD ="INSERT INTO ACTIVIDAD set ?";
-const DELETE_ACTIVIDADES = "DELETE * FROM ACTIVIDAD WHERE name = ?";
+const DELETE_ACTIVIDAD = "DELETE * FROM ACTIVIDAD WHERE name = ?";
 const GET_ACTIVIDADES_BY_PRV = "SELECT * FROM ACTIVIDAD WHERE IdProveedor =?"
 const GET_ACTIVIDAD_BY_ID = "SELECT * FROM ACTIVIDAD WHERE idActividad =?"
 const GETALL_ACTIVIDAD="SELECT * FROM ACTIVIDAD";
+const UPDATE_ACTIVIDAD = "UPDATE Actividad SET ?  WHERE idActividad = ?";
 
 class ACTIVIDAD {
     constructor (idActividad, descripcion,tipoActividad,cuposTotales,imagen,idUsuarioResp,idProveedor){       
@@ -97,14 +97,15 @@ class ACTIVIDAD {
 
     static guardarActividad(data){
         return new Promise(function(resolve, reject){            
-            const Actividad = data ;
-            connection.query(SAVE_ACTIVIDAD,[Actividad],function(error,results){
+            const actividad = data ;
+            console.log('guardarActividad : '+ data.tipoActividad +' '+data.cuposTotales)
+            connection.query(SAVE_ACTIVIDAD,[actividad],function(error,results){
                 if (error){
                     console.log(error);
                     reject(error);
                 } else {                                                                            
                     resolve({"success" : "true",
-                             "descripcion": "ActividadAgendada creado con exito"
+                             "descripcion": "Actividad creado con exito"
                     });
                 }
             });
@@ -121,6 +122,22 @@ class ACTIVIDAD {
                     resolve( {"success" : "true",
                                 "descripcion": "borrado con exito"
                                 });
+                }
+            });
+        })
+    }
+
+    static updateActividad(data,id){
+        console.log('updateActividad BD: '+ id);        
+        return new Promise(function(resolve, reject){
+            connection.query(UPDATE_ACTIVIDAD,[data,id],function(error,results){
+                if (error){
+                    console.log(error);
+                    reject(error);
+                } else {       console.log('success');                                                     
+                    resolve({"success" : "true",
+                              "msg": "update Usuario con exito"
+                            });
                 }
             });
         })

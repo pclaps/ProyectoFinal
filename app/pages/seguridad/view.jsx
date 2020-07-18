@@ -9,6 +9,7 @@ class SeguridadPage extends React.Component {
     render() {
         const { usuarios } = this.props.initialState;       
         console.log('usuarios: '+ usuarios);
+        
         return (
             <React.Fragment>                          
                  <Route

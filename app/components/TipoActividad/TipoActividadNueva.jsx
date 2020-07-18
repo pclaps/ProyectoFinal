@@ -3,13 +3,7 @@ const {Link} = require ('react-router-dom');
 const { Redirect } = require ('react-router-dom');
 const { Button,Form,Checkbox } = require ('semantic-ui-react');
 
-const options = [
-    { key: 'm', text: 'Male', value: 'male' },
-    { key: 'f', text: 'Female', value: 'female' },
-    { key: 'o', text: 'Other', value: 'other' },
-  ]
-
-class NuevaTipoAct extends React.Component {
+class TipoActividadNueva extends React.Component {
 
     constructor(props) {
         super(props);
@@ -84,20 +78,4 @@ class NuevaTipoAct extends React.Component {
     }
 };
 
-module.exports = NuevaTipoAct;
-/*
-      <Form.Field>
-                          <label>First Name</label>
-                          <input placeholder='First Name' />
-                    </Form.Field>  
-                    <Form.Select
-                       fluid
-                       label='Gender'
-                       options={options}
-                       placeholder='Gender'
-                     />
-                     
-                     <Form.Field
-                      control={Checkbox}
-                       label='I agree to the Terms and Conditions'
-                    />*/
+module.exports = TipoActividadNueva;
