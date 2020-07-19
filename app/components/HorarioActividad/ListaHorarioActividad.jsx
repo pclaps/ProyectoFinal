@@ -3,9 +3,6 @@ const HorarioActividad = require('./HorarioActividad');
 const {Link} = require ('react-router-dom');
 const {Segment,List,Icon,Button,Label,Divider, Container, Table} = require('semantic-ui-react');
 
-
-
-//completarr
 class ListaHorarioActividad extends React.Component {
     constructor(props) {
         super(props);
@@ -17,11 +14,12 @@ class ListaHorarioActividad extends React.Component {
 
         this.onAgendarHorario = this.onAgendarHorario.bind(this);
     }
-    //Para elegir horario
+    //Para agendar horario
     onAgendarHorario(idHorarioActividad){
-        console.log('Crear Actividad Agendada: '+idHorarioActividad);
-        
-        fetch(`/api/horarioactividad/${idHorarioActividad}`, {
+       
+        console.log('hora: '+idHorarioActividad);
+       
+        fetch(`/api/actividadagendada/`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -33,6 +31,10 @@ class ListaHorarioActividad extends React.Component {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             // body: JSON.stringify(data) // body data type must match "Content-Type" header
+            body: JSON.stringify({
+
+                idHorarioActividad : idHorarioActividad                     
+            })
           })
           .then(response => response.json())
           .then(data => {
@@ -88,6 +90,8 @@ class ListaHorarioActividad extends React.Component {
                                 <Table.HeaderCell>Mes</Table.HeaderCell>
                                 <Table.HeaderCell>id Local</Table.HeaderCell>                                
                                 <Table.HeaderCell>Id Actividad</Table.HeaderCell>                                
+                                <Table.HeaderCell>Agendar</Table.HeaderCell>  
+                                <Table.HeaderCell>Ir A</Table.HeaderCell>  
                             </Table.Row>
                         </Table.Header>
                   <Table.Body>

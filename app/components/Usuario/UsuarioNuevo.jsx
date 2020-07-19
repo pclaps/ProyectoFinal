@@ -95,8 +95,7 @@ class UsuarioNuevo extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        alert('nuevo usuario');
+        event.preventDefault();       
         fetch('/api/usuario', {
             method: 'POST',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
@@ -161,7 +160,7 @@ class UsuarioNuevo extends React.Component {
                           onChange={this.handleApellidoChange}/>
                     </Form.Field>  
                     <Form.Field required>
-                          <label>Fecha Nacimiento</label>
+                          <label>Fecha Nacimiento(yyyy/mm/dd)</label>
                           <input placeholder='Fecha Nac' 
                           value={this.state.fechaNacimiento} 
                           onChange={this.handleFecNacChange}/>
@@ -186,12 +185,7 @@ class UsuarioNuevo extends React.Component {
                           value={this.state.direccion} 
                           onChange={this.handleDireccionChange}/>
                     </Form.Field>   
-                    <Form.Field>
-                          <label>Proveedor</label>
-                          <input placeholder='idProveedor' 
-                          value={this.state.idProveedor} 
-                          onChange={this.handleIdProveedorChange}/>
-                    </Form.Field>    
+                      
                     <Form.Button primary >Crear Usuario</Form.Button>                      
                 </Form>
             </div>
@@ -200,3 +194,9 @@ class UsuarioNuevo extends React.Component {
 };
 
 module.exports = UsuarioNuevo;
+/*<Form.Field>
+                          <label>Proveedor</label>
+                          <input placeholder='idProveedor' 
+                          value={this.state.idProveedor} 
+                          onChange={this.handleIdProveedorChange}/>
+                    </Form.Field>   */

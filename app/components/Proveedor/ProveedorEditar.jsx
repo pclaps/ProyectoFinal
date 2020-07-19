@@ -62,7 +62,8 @@ class ProveedorEditar extends React.Component {
       });
   }
 
-    componentDidMount() {              
+    componentDidMount() {    
+        alert(this.state.proveedor.idProveedor)          ;
         fetch(`/api/proveedor/${this.props.id}`, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin

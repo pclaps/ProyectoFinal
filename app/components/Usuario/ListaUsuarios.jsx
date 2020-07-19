@@ -94,5 +94,5 @@ class ListaUsuarios extends React.Component {
         );
     }
 };
-// <Usuario key={usuario.idUsuario} idUsuario={usuario.idUsuario} nombreUsuario={usuario.nombreUsuario}/>
+
 module.exports = ListaUsuarios;

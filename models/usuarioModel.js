@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 //Defino las funcionalidades para la clase 
 const GETALL_USUARIO ="SELECT * FROM usuario ";
 const GET_USUARIO_BY_ID ="SELECT * FROM usuario WHERE idUsuario = ?";
-const GET_CLAVE_BY_MAIL ="SELECT clave FROM usuario WHERE email = ?";
+const GET_CLAVE_BY_MAIL ="SELECT clave,idUsuario FROM usuario WHERE email = ?";
 const GET_USUARIO_BY_MAIL ="SELECT * FROM usuario WHERE email = ?";
 const SAVE_USUARIO ="INSERT INTO usuario SET ?";
 const DELETE_USUARIO = "DELETE FROM usuario WHERE idUsuario = ?";
@@ -25,50 +25,6 @@ class Usuario {
         this.direccion = direccion,
         this.idProveedor = idProveedor
     }
-
-    // Valido mail y clave
-    static getUsuarioByMail (data){
-        const email = data.email;
-        const claveLogin = data.clave;
-        console.log('validoMailLogin params BD: '+ email +' : '+ claveLogin);
-        
-        return new Promise(function(resolve, reject){
-            connection.query(GET_USUARIO_BY_MAIL,[email], (error, row) => {
-            if (error){         
-                console.log(error);
-                reject(error);                         
-            }
-            else {          
-                 console.log('else')      
-                  if (row==null ||  row[0]==null){  console.log('row null');  
-                    reject (
-                        { success: false,
-                            msg : 'Usuario y/o clave incorrectos',}) 
-                            return;
-                  }    
-                  console.log('luego else')               
-                  console.log('result '+ row[0].clave) ;
-                   //console.log('result2 ' +row[0]);                                
-                  bcrypt.compare(claveLogin,row[0].clave,function(error,resultado){
-                  if (resultado){
-                    console.log('usuario logueado OK');
-                    resolve( { success: true,
-                               msg : 'usuario registrado',} ) 
-                }
-                else {
-                      console.log('Error hash usuario no logueado');
-                      reject (
-                            { success: false,
-                                msg : 'Usuario y/o clave incorrectos',}
-                            ) 
-                            //reject(error);
-                } 
-                })                  
-            }
-        })           
-    })
-}
-
 
     ///
  static validoMailLogin (data){
@@ -95,8 +51,9 @@ class Usuario {
                   bcrypt.compare(claveLogin,row[0].clave,function(error,resultado){
                     if (resultado){
                         console.log('usuario logueado OK');
+                           
                         resolve( { success: true,
-                                msg : 'usuario registrado',} ) 
+                                    id : row[0].idUsuario,} ) 
                     }
                     else {
                         console.log('Error hash usuario no logueado');

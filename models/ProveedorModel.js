@@ -32,7 +32,7 @@ class Proveedor {
     }
 
     static getProveedorId (id){
-        console.log('getProveedorId');
+        console.log('getProveedorId BD : '+id);
         return new Promise(function(resolve, reject){
             connection.query(GET_PROVEEDOR_BY_ID,[id],function(error,results){
                 if (error){

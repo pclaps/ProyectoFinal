@@ -1,4 +1,4 @@
-const connection = require('../database');
+const connection = require('../services/db-connection');
 //Defino las funcionalidades para la clase 
 const GETALL_ACTAGENDADA ="SELECT * FROM ActividadAgendada ";
 const GET_ACTAGENDADA_BY_ID ="SELECT * FROM ActividadAgendada WHERE IDActividadAgendada = ?";
@@ -7,11 +7,10 @@ const SAVE_ACTAGENDADA ="INSERT INTO ActividadAgendada SET ?";
 const DELETE_ACTAGENDADA = "DELETE FROM ActividadAgendada WHERE idActividadAgendada = ?";
 const UPDATE_ACTAGENDADA = "UPDATE ActividadAgendada SET ?  WHERE idActividadAgendada = ?";
 
-
 class ActividadAgendada {
-    constructor (idActividadAgendada,usuario,asistencia,fechaCreacion,fechaModificacion,idHorAct){       
-        this.idActividadAgendada = idActividadAgendada,
-        this.usuario = usuario,
+    constructor (idActAge,idUsuario,asistencia,fechaCreacion,fechaModificacion,idHorAct){       
+        this.idActAge = idActAge,
+        this.idUsuario = idUsuario,
         this.asistencia = asistencia,
         this.fechaCreacion = fechaCreacion,
         this.fechaModificacion = fechaModificacion,
@@ -28,8 +27,8 @@ class ActividadAgendada {
                     console.log(results);
                 
                     resolve(results.map((ActAgendada) => {
-                        const { idActividadAgendada,usuario,asistencia,fechaCreacion,fechaModificacion,idHorAct } = ActAgendada;
-                        return new ActividadAgendada(idActividadAgendada,usuario,asistencia,fechaCreacion,fechaModificacion,idHorAct);
+                        const { idActAge,idUsuario,asistencia,fechaCreacion,fechaModificacion,idHorAct } = ActAgendada;
+                        return new ActividadAgendada(idActAge,idUsuario,asistencia,fechaCreacion,fechaModificacion,idHorAct);
                     }));
                 }
             });
@@ -44,8 +43,8 @@ class ActividadAgendada {
                 } else {                                     
                     console.log(results);                
                     resolve(results.map((ActAgendada) => {
-                        const { idActividadAgendada,usuario,asistencia,fechaCreacion,fechaModificacion,idHorAct } = ActAgendada;
-                        return new ActividadAgendada(idActividadAgendada,usuario,asistencia,fechaCreacion,fechaModificacion,idHorAct);
+                        const { idActAge,idUsuario,asistencia,fechaCreacion,fechaModificacion,idHorAct } = ActAgendada;
+                        return new ActividadAgendada(idActAge,idUsuario,asistencia,fechaCreacion,fechaModificacion,idHorAct);
                     }));
                 }
             });
@@ -67,8 +66,8 @@ class ActividadAgendada {
                         }
                         reject(error);
                     }else{                 
-                        const {idActividadAgendada,usuario,asistencia,fechaCreacion,fechaModificacion,idHorAct} = results[0];//aca tengo los nombres posta                    
-                        resolve(new ActividadAgendada(idActividadAgendada,usuario,asistencia,fechaCreacion,fechaModificacion,idHorAct));
+                        const {idActAge,idUsuario,asistencia,fechaCreacion,fechaModificacion,idHorAct} = results[0];//aca tengo los nombres posta                    
+                        resolve(new ActividadAgendada(idActAge,idUsuario,asistencia,fechaCreacion,fechaModificacion,idHorAct));
                 }}
             });
         })

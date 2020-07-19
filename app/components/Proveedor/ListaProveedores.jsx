@@ -40,7 +40,7 @@ class ListaProveedores extends React.Component {
     }
 
     onRefresh() {
-        console.log('onRefresh');
+       // console.log('onRefresh');
         fetch(`/api/proveedor/`)
         .then(res => res.json()).then((data) =>{
             this.setState({

@@ -53,7 +53,6 @@ class Login extends React.Component {
                 alert("No existe usuario");
             }
            
-    
         }).catch((err) => {
             alert(err);
             console.log('error en login');

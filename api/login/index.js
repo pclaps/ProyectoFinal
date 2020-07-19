@@ -2,54 +2,40 @@ const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
 const moment = require('moment');
 
-const {appAutorizacionHandler} = require('../../middlewares/autorizacion-handler');
+const {appAutorizacionHandler,getSessionUsuario} = require('../../middlewares/autorizacion-handler');
 
-
-const getSessionUsuario = (req, res, next) => {
-
-    if(req.session.user){
-        req.user = req.session.user;
-    }
-    next();
-}
-
-//router.get('/', getSessionUsuario);
 
 const validarLogin = (req, res,next) => {   
    console.log('validarLogin API');
     const { email,clave } = req.body;
     const datalogin = { email,clave };
     Usuario.validoMailLogin(datalogin)
-            .then(login => { console.log('resultado Validar login '+ login.success + login.msg);           
-            /*if(req.session.user){
-                console.log('session '+ req.session.user);
-                req.user = req.session.user;
-            }*/
-            if (req.session.email)
-                console.log('datos del body '+req.session.email);
-            else  
-                console.log('no existe req.session.email');   
-            req.session.email=email;
-            console.log('session '+ req.session.email);
-               res.json({login,});   
-               //next();
-            })
-           
+            .then(login => { console.log('resultado Validar login '+ login.success + login.id);                      
+            if (req.session.email){
+                  console.log('datos del body '+req.session.email);
+            }
+            else{
+                //asigno la sesion al email conectado
+                req.session.email=email;
+                req.session.user=login.id
+                req.user=login.id;
+                console.log('session:'+ req.session.email+' '+req.user);
+                res.json({login,});
+                next();
+            }              
+            })           
            .catch(function(err){  
               console.log(err);        
-              console.log('ocurrio un error API '+ err.msg);
-          //    const login={'success': false,
-            //                'msg': err.msg}                         
+              console.log('ocurrio un error API '+ err.msg);                                 
               res.status(401).json( {
                 'success': false,
                 'msg': err.msg
-              });
-            //res.json(err);
-            //next();
+              });           
          })
 }
 
-router.post('/', validarLogin,appAutorizacionHandler );
+router.post('/', validarLogin,getSessionUsuario,appAutorizacionHandler, );
+
 
 const validateParams = (req, res, next) => {
     if(isNaN(req.params.id)) {
@@ -94,13 +80,13 @@ const getUsuario=(req,res)=>{
     })
 };
 router.get('/:id', getUsuario);
-
+/*
 const saveUsuario=(req,res)=>{
     console.log('saveUsuario');
     const {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,rol,direccion } = req.body;    
     const dataUsu = {clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,rol,direccion};
     console.log(dataUsu);
-    console.log('guardarUsuario');
+    //console.log('guardarUsuario');
     Usuario.guardarUsuario(dataUsu)
      .then(function(Usuario){
         res.json(Usuario);    
@@ -113,7 +99,7 @@ const saveUsuario=(req,res)=>{
 };
 
 router.post('/', saveUsuario );
-
+*/
 const deleteUsuario=(req,res)=>{
     console.log('deleteUsuario');
     const { id } = req.params; // igual a     const id = req.params.id;

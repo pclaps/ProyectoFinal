@@ -1,30 +1,39 @@
 const React = require('react');
-const {Link} = require ('react-router-dom');
-const { Redirect } = require ('react-router-dom');
-const {StaticRouter} = require('react-router-dom');
-//const View = require('../../pages/users/view');
-const {renderToString} = require('react-dom/server');
 
+const  getSessionUsuario = (req, res, next) => {
+  console.log('getSessionUsuario');
+  if(req.session.email){
+      req.user = req.session.email;
+      req.id = req.session.user;
+      console.log('req.user : '+ req.user);
+      next();
+  }
+  else{
+    console.log('No logueado');
+    res.redirect('/seguridad/login');
+  }
+}
 
 const appAutorizacionHandler = (req, res, next) => {
-  console.log(" appAutorizacionHandler");
+  console.log("appAutorizacionHandler");
+  //Si esta logueado
+  if (req.session.email){
+    console.log('usuario logueado');
 
-  if (req.session!=null){
-    console.log('not nutll');
-    if(req.session.mail==='r'){
-        console.log('Usuario conectado es r!!');
-    } else console.log('Usuario conectado es: '+ req.session.mail);
-    next();
-  }else{
-    console.log("else");
-   /*   return <Redirect to="/users/signin" />  */
-
-/*     window.location="/users/signin"  */
+    //si es administrador
+    if(req.session.email==='admin'){
+        console.log('es el admin');
+        next();
+    } 
+    else{
+        console.log('Usuario conectado es: '+ req.session.email  );        
+    }   
+    
   }
-
-  //res.render("/signin",{message: 'No autorizado'});
-  // Validar que en la request este el usuario logeado TODO
-  // Redirect con express al login TODO
+  else{
+    console.log("No esta logueado");
+    res.redirect('/seguridad/login');
+  }
 };
 
 const apiAutorizacionHandler = (req, res, next) => {
@@ -46,5 +55,6 @@ const apiAutorizacionHandler = (req, res, next) => {
 
 module.exports = { 
     appAutorizacionHandler, 
-    apiAutorizacionHandler 
+    apiAutorizacionHandler,
+    getSessionUsuario
 };

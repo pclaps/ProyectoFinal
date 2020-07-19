@@ -15,8 +15,7 @@ class Proveedor extends React.Component {
            <Button color='red' inverted as={Link} to={`/lista-proveedores/proveedor/${this.props.idProveedor}`}>Modificar</Button>                        
        </Table.Cell>   
        <Table.Cell>
-       <a href= {`/lista-actividades/porproveedor/${this.props.idProveedor}`}>Seleccionar Actividades</a> 
-       <Button color='teal'  as={Link} to={`/lista-actividades/porproveedor/${this.props.idProveedor}`}>Elegir Actividad</Button>                          
+       <a href= {`/lista-actividades/porproveedor/${this.props.idProveedor}`}>Seleccionar Actividades</a>        
        </Table.Cell>
       </React.Fragment>
     );
@@ -24,3 +23,6 @@ class Proveedor extends React.Component {
 };
 
 module.exports = Proveedor;
+
+
+//<Button color='teal'  as={Link} to={`/lista-actividades/porproveedor/${this.props.idProveedor}`}>Elegir Actividad</Button>                          

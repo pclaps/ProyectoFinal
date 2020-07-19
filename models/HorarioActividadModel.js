@@ -98,7 +98,7 @@ static getHorariosActividadesByActividad (id){
                 } else {                                   
                     console.log('Se creo HOrario Actividad exitosamente');
                     resolve({"success" : "true",
-                             "descripcion": "HorarioActividad creado con exito"
+                             "msg": "HorarioActividad creado con exito"
                     });
                 }
             });
@@ -113,7 +113,7 @@ static getHorariosActividadesByActividad (id){
                     reject(error);
                 } else {                                                          
                     resolve( {"success" : "true",
-                                "descripcion": "borrado con exito"
+                                "msg": "borrado con exito"
                                 });
                 }
             });

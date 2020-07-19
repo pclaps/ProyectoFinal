@@ -17,6 +17,11 @@ class SeguridadPage extends React.Component {
                     path="/seguridad/login"
                     render={(props) => <Login {...props} usuarios={usuarios}/>}
                 />    
+                 <Route
+                    exact
+                    path="/seguridad/logout"
+                    render={(props) => <Logout {...props} usuarios={usuarios}/>}
+                />    
                    <Route
                     exact
                     path="/seguridad/nuevousuario"

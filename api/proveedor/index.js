@@ -1,14 +1,7 @@
 const express = require('express');
 const router = express.Router();
-/*router.get('/', getAllProveedor);
-router.get('/:id', getProveedor);
-router.post('/',saveProveedor);
-
-router.delete('/:id', deleteProveedor);
-router.post('/update/:id',updateProveedor);
-*/
-
 const Proveedor = require('../../models/ProveedorModel');
+const {getSessionUsuario} = require('../../middlewares/autorizacion-handler');
 
 
 const validateParams = (req, res, next) => {
@@ -37,7 +30,9 @@ const getProveedores=(req,res)=>{
     })
 };
 
-router.get('/', getProveedores);
+//router.get('/', getProveedores);
+
+router.get('/',getSessionUsuario, getProveedores);
 
 //Obtengo un Tipo de Actividad por ID
 const getProveedorId=(req,res)=>{    

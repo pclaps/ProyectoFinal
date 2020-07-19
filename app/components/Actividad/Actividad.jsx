@@ -16,7 +16,9 @@ class Actividad extends React.Component {
           <Table.Cell>
                   <a href= {`/lista-proveedores/proveedor/${this.props.idProveedor}`}>Ir a Proveedor</a>                                                    
           </Table.Cell>   
-          <Table.Cell><a href= {`/lista-horarioactividad/poractividad/${this.props.idActividad}`}>Elegir Horario</a></Table.Cell>                          
+          <Table.Cell>
+            <a href= {`/lista-horarioactividad/poractividad/${this.props.idActividad}`}>Elegir Horario</a>
+          </Table.Cell>                          
    </React.Fragment>
     
     );

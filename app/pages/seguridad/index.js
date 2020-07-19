@@ -9,7 +9,7 @@ const View = require('./view');
 //console.log('pages-lista-usuarios--index');
 
 router.get('/*', (req, res, next) => {
-    const user = req.session.user;
+    const user = req.session.email;
     const initialState = {};
     console.log('Autenticacion index '+ user);
     const context = {

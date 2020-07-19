@@ -70,15 +70,15 @@ router.get('/:id', getHorariosByID);
 
 //Guardo un Tipo de Actividad
 const saveHorarioActividad=(req,res)=>{
-    console.log('saveHorarioActividad');
+    console.log('saveHorarioActividad '+ req.body);
     const {dia,hora,mes,idLocal,idActividad,fecC,fecM } = req.body;    
     const fechaCreacion= moment(fecC).format();
     const fechaModif= moment(fecM).format();
     const data = {dia,hora,mes,idLocal,idActividad,fechaCreacion,fechaModif};
-
+    console.log(data);
     HorarioActividad.guardarHorarioActividad(data)
     .then(function(horario){
-        console.log('horario :'+horario);
+        console.log('horario :'+ horario.success +horario.msg);        
         res.json(horario);    
     })
     .catch(function(err){  

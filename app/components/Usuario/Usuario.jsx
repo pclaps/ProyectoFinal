@@ -42,32 +42,3 @@ class Usuario extends React.Component {
 };
 
 module.exports = Usuario;
-//<Button  as={Link} to= {`/api/usuario/delete/${this.props.idUsuario}`}>Borrar </Button>
-/*<li>
-<h2> {this.props.idUsuario}</h2>
-        <h2> {this.props.nombreUsuario}</h2>
-        <Link to={`/lista-usuarios/usuario/${this.props.idUsuario}`}>Ir al Usuario</Link>
-        <p>{this.props.email}</p>       
-      </li>*/
-
-      /**
-       *   <div>
-          <Table.Cell>
-              {this.props.idUsuario} 
-          </Table.Cell>    
-          <Table.Cell>
-              {this.props.nombreUsuario} 
-          </Table.Cell> 
-          <Table.Cell>
-              {this.props.contrasena} 
-          </Table.Cell> 
-          <Table.Cell>
-              {this.props.correo}          
-          </Table.Cell>
-          <Table.Cell>
-              <Button primary as={Link} to={`/detalleUsuario/${this.props.idUsuario}`}>Detalle</Button>
-              <Button color='red' onClick={()=>this.props.onDeleteUsuario(this.props.idUsuario)}>Borrar</Button>
-          </Table.Cell>
-      </div>
-       * 
-       */
