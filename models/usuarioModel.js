@@ -30,7 +30,7 @@ class Usuario {
  static validoMailLogin (data){
         const email = data.email;
         const claveLogin = data.clave;
-        console.log('validoMailLogin params BD: '+ email +' : '+ claveLogin);
+       // console.log('validoMailLogin params BD: '+ email +' : '+ claveLogin);
         
         return new Promise(function(resolve, reject){
             connection.query(GET_CLAVE_BY_MAIL,[email], (error, row) => {
@@ -46,7 +46,7 @@ class Usuario {
                             return;
                   }    
                  // console.log('luego else')               
-                  console.log('result '+ row[0].clave) ;
+                 // console.log('result '+ row[0].clave) ;
                    //console.log('result2 ' +row[0]);                                
                   bcrypt.compare(claveLogin,row[0].clave,function(error,resultado){
                     if (resultado){
@@ -111,7 +111,7 @@ class Usuario {
                     }else{
                         console.log('success getUsuarioID BD');
                         console.log(results[0]);
-                            const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = results[0];
+                         const { idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor } = results[0];
                          resolve(new Usuario(idUsuario,clave,email,nombreUsuario,apellidoUsuario,fechaNacimiento,telefono,fecCreado,fecModif,rol,direccion,idProveedor));                                      
                     }
                     

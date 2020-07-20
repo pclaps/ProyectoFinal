@@ -30,7 +30,7 @@ const getProveedores=(req,res)=>{
     })
 };
 
-//router.get('/', getProveedores);
+router.get('/', getProveedores);
 
 router.get('/',getSessionUsuario, getProveedores);
 
@@ -38,14 +38,16 @@ router.get('/',getSessionUsuario, getProveedores);
 const getProveedorId=(req,res)=>{    
     const { id } = req.params;     
     Proveedor.getProveedorId(id)
-    .then(function(proveedor){        
-        res.json(proveedor);
+    .then(proveedor => {
+        res.json({
+             proveedor,
+       });   
     })
-    .catch(function(err){  
-        console.log(err);
-        console.log('ocurrio un error en getProveedor');
-        res.json(err);
-    })
+   .catch(function(err){  
+     console.log(err);        
+     console.log('ocurrio un error getProveedorId '+ err.msg);
+     res.json(err);
+})
 };
 router.get('/:id', getProveedorId);
 

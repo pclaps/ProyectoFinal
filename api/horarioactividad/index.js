@@ -2,7 +2,7 @@ const router = require('express').Router();
 const HorarioActividad = require('../../models/HorarioActividadModel');
 const moment = require('moment');
 
-console.log('horario actividad API');
+//console.log('horario actividad API');
 const validateParams = (req, res, next) => {
     if(isNaN(req.params.id)) {
         res.status(404).send({
@@ -13,7 +13,6 @@ const validateParams = (req, res, next) => {
         next();
     }
 };
-
 
 const getAllHorarioActividad=(req,res)=>{   
     //busco los horarios segun actividad

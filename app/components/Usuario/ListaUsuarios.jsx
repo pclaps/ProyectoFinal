@@ -69,11 +69,11 @@ class ListaUsuarios extends React.Component {
             <div>
                 <Segment inverted textAlign="center">Listado de Usuarios</Segment>                  
                 <div >                                                                    
-                    <Button as={Link} to="/lista-usuarios/nuevousuario" floated='right' icon labelPosition='left' primary size='big' >
+                    <Button as={Link} to="/lista-usuarios/nuevousuario" floated='right' icon labelPosition='left' primary size='medium' >
                         <Icon name='user' /> Nuevo Usuario
                     </Button>                    
                     <Label>
-                         <Icon name='user' />Cantidad de Usuarios{usuarios.length}
+                         <Icon name='user' />Cantidad de Usuarios: {usuarios.length}
                     </Label>
                 </div>
                 <Divider horizontal></Divider>

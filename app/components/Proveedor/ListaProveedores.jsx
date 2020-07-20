@@ -1,7 +1,7 @@
 const React = require('react');
 const {Link} = require ('react-router-dom');
 const Proveedor = require('./Proveedor');
-const {Segment,List,Icon,Button,Label,Divider, Container,Table} = require('semantic-ui-react');
+const {Segment,List,Icon,Button,Label,Divider, Container,Table,Grid,Step} = require('semantic-ui-react');
 
 class ListaProveedores extends React.Component {
     constructor(props) {
@@ -93,7 +93,42 @@ class ListaProveedores extends React.Component {
                             </Table.Row>))    
                          }
                         </Table.Body>
-                   </Table>                        
+                   </Table> 
+                   <Grid size='huge'   style={{ maxWidth: 600 }}>
+          <Step.Group >
+                <Step disabled>
+                <Icon name='user' />
+                <Step.Content>
+                    <Step.Title>Registro</Step.Title>
+                    <Step.Description>de usuario</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step active>
+                <Icon name='industry' />
+                <Step.Content>
+                    <Step.Title>Seleccione</Step.Title>
+                    <Step.Description>su proveedor</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step disabled>
+                <Icon name='sort' />
+                <Step.Content>
+                <Step.Title>Seleccione</Step.Title>
+                    <Step.Description>su actividad</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step disabled>
+                <Icon name='calendar' />
+                <Step.Content>
+                <Step.Title>Confirme</Step.Title>
+                    <Step.Description>fecha</Step.Description>
+                </Step.Content>
+                </Step>
+            </Step.Group>
+          </Grid>                       
             </div>
         );
     }

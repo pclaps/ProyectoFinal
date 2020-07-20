@@ -1,15 +1,8 @@
 const router = require('express').Router();
 const Usuario = require('../../models/usuarioModel');
 const moment = require('moment');
+const {getSessionUsuario} = require('../../middlewares/autorizacion-handler');
 
-
-const getSessionUsuario = (req, res, next) => {
-
-    if(req.session.user){
-        req.user = req.session.user;
-    }
-    next();
-}
 
 const autenticarUsuario = (req, res, next) => {
     //valido que el usuario sea Admin
@@ -46,7 +39,8 @@ const getAllUsuario=(req,res)=>{
     })
 }
 
-router.get('/', getAllUsuario);
+router.get('/',getSessionUsuario, getAllUsuario);
+//Se agrega Seguridad en Lista de Usuarios solo se puede acceder autenticado
 
 
 const getUsuario=(req,res)=>{  

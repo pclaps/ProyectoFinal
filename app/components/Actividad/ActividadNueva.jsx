@@ -64,7 +64,7 @@ class ActividadNueva extends React.Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        alert('nuevo actividad');
+       // alert('nuevo actividad');
         fetch('/api/actividad', {
             method: 'POST',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
@@ -100,7 +100,7 @@ class ActividadNueva extends React.Component {
     render() {
         if (this.state.redirect) {
             alert('redirect true');
-            return  window.location=="/lista-actividades"
+            return  window.location="/lista-actividades"
         }
         return (
             <div>               

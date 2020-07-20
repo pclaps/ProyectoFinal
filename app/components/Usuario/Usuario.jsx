@@ -2,14 +2,11 @@ const React = require('react');
 const {Link} = require ('react-router-dom');
 const {List,Button} = require('semantic-ui-react');
 
-
 class Usuario extends React.Component {
  
   render() {
- 
     return (
-      <div>
-      
+      <div>      
       <List>
         <List.Item>
          <List.Icon circular name='user' size="small" />
@@ -31,8 +28,8 @@ class Usuario extends React.Component {
               <a href= {`/lista-usuarios/usuario/${this.props.idUsuario}`}>Ir a Usuario</a>
           </List.Content>
         </List.Item>                
-        <Button color='red' onClick={()=>this.props.onDeleteUsuario(this.props.idUsuario)}>Borrar</Button>
-        <Button as={Link} to= {`/lista-usuarios/usuario/${this.props.idUsuario}`}>Modificar </Button>
+        <Button color='red' inverted onClick={()=>this.props.onDeleteUsuario(this.props.idUsuario)}>Borrar</Button>
+        <Button as={Link} color='teal' to= {`/lista-usuarios/usuario/${this.props.idUsuario}`}>Modificar </Button>
     </List>
        
       </div>

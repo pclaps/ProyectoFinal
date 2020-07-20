@@ -68,8 +68,11 @@ class Login extends React.Component {
         return (    
         <Grid textAlign='center' style={{ height: '100px' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as='h1' color='teal' textAlign='center'>
+            Reservas
+          </Header>
           <Header as='h2' color='teal' textAlign='center'>
-            <Image src='/logo.png' /> Ingrese en su cuenta
+            Ingrese en su cuenta
           </Header>
           <Form size='large' onSubmit={this.handleSubmit}>
             <Segment stacked>
@@ -107,7 +110,7 @@ class Login extends React.Component {
                 </Step.Content>
                 </Step>
 
-                <Step >
+                <Step disabled >
                 <Icon name='industry' />
                 <Step.Content>
                     <Step.Title>Seleccione</Step.Title>
@@ -115,7 +118,7 @@ class Login extends React.Component {
                 </Step.Content>
                 </Step>
 
-                <Step >
+                <Step disabled>
                 <Icon name='sort' />
                 <Step.Content>
                 <Step.Title>Seleccione</Step.Title>
@@ -123,7 +126,7 @@ class Login extends React.Component {
                 </Step.Content>
                 </Step>
 
-                <Step >
+                <Step disabled>
                 <Icon name='calendar' />
                 <Step.Content>
                 <Step.Title>Confirme</Step.Title>
@@ -133,36 +136,9 @@ class Login extends React.Component {
             </Step.Group>
           </Grid>
         </Grid.Column>
-      </Grid>
-   
-      
-           
+      </Grid>                    
         );
     }
 };
 
 module.exports = Login;
-/* <div>               
-                <Segment inverted textAlign="center">Login de Usuarios</Segment>            
-                <Form onSubmit={this.handleSubmit} className="flex-container2">     
-                    <Form.Field required>
-                          <label>Correo electrónico</label>                          
-                          <input placeholder='Email' 
-                          value={this.state.email} 
-                          onChange={this.handleEmailChange}
-                          error={{
-                            content: 'Please enter a valid email address',
-                            pointing: 'below',
-                          }}/>
-                    </Form.Field>  
-                    <Form.Field required>
-                          <label>Contraseña</label>                          
-                          <input placeholder='Contraseña' 
-                          value={this.state.clave} 
-                          onChange={this.handleClaveChange}
-                         />
-                    </Form.Field>  
-                 
-                    <Form.Button primary >Login</Form.Button>                      
-                </Form>
-            </div>*/

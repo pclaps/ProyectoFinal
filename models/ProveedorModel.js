@@ -4,7 +4,8 @@ const GETALL_PROVEEDOR ="SELECT * FROM Proveedor ";
 const GET_PROVEEDOR_BY_ID ="SELECT * FROM Proveedor WHERE IDProveedor = ?";
 const SAVE_PROVEEDOR ="INSERT INTO Proveedor SET ?";
 const DELETE_PROVEEDOR = "DELETE FROM Proveedor WHERE idProveedor = ?";
-const GET_ACTIVIDADES_PROVEEDOR ="";
+const UPDATE_PROVEEDOR ="UPDATE PROVEEDOR  SET ?  WHERE idProveedor = ?";
+
 
 class Proveedor {
     constructor (idProveedor,descripcion,direccion){       
@@ -46,11 +47,16 @@ class Proveedor {
                                        msg : 'No existe registro',
                         }
                         reject(error);
-                    }else{                  
+                    }
+                    else{             
+                        console.log('success getProveedorId BD');
+                        console.log(results[0]);
                          const {idProveedor,descripcion,direccion} = results[0];//aca tengo los nombres posta                    
                          resolve(new Proveedor(idProveedor,descripcion,direccion));
-                }}
-            });
+                        
+                    }
+                }
+            })
         })
     }
 
@@ -81,6 +87,22 @@ class Proveedor {
                     resolve( {"success" : "true",
                                 "descripcion": "borrado con exito"
                                 });
+                }
+            });
+        })
+    }
+
+    static updateProveedor(data,id){
+        console.log('updateUsuario BD: '+ id);        
+        return new Promise(function(resolve, reject){
+            connection.query(UPDATE_PROVEEDOR,[data,id],function(error,results){
+                if (error){
+                    console.log(error);
+                    reject(error);
+                } else {   console.log('success');                                                     
+                    resolve({"success" : "true",
+                              "msg": "update Proveedor con exito"
+                            });
                 }
             });
         })

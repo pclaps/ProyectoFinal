@@ -9,19 +9,31 @@ const  getSessionUsuario = (req, res, next) => {
       next();
   }
   else{
-    console.log('No logueado');
+    console.log('No logueado');   
     res.redirect('/seguridad/login');
   }
 }
 
+const  deleteSessionUsuario = (req, res, next) => {
+  console.log('getSessionUsuario');
+  if(req.session.email){
+      req.session.destroy((err)=>{console.log('sesion borrada')});
+      
+      next();
+  }
+  else{
+    console.log('No se pudo borrar sesion');       
+  }
+}
+
 const appAutorizacionHandler = (req, res, next) => {
-  console.log("appAutorizacionHandler");
+  //console.log("appAutorizacionHandler");
   //Si esta logueado
   if (req.session.email){
-    console.log('usuario logueado');
+    //console.log('usuario logueado');
 
     //si es administrador
-    if(req.session.email==='admin'){
+    if(req.session.email==='admin@gmail.com'){
         console.log('es el admin');
         next();
     } 
@@ -37,24 +49,19 @@ const appAutorizacionHandler = (req, res, next) => {
 };
 
 const apiAutorizacionHandler = (req, res, next) => {
-    console.log("hola seguridad api");
+    console.log(" seguridad api");
 //     if(req.session.user/*  == 'nuevo' */){
 //       next();
 //    }else{
 //        res.render("signin",{message: 'No autorizado'});
 //    } 
 
-    // Validar que en la request este el usuario logeado TODO
-    // res.status(401);
-    //res.json({
-      //  message: 'Error flaco'
-    //});
-    // Si no hay problemas llamar a next();
     next();
 };
 
 module.exports = { 
     appAutorizacionHandler, 
     apiAutorizacionHandler,
-    getSessionUsuario
+    getSessionUsuario,
+    deleteSessionUsuario
 };

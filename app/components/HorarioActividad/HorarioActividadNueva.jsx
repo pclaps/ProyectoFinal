@@ -61,7 +61,7 @@ class HorarioActividadNueva extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        alert('nuevo Horarioactividad');
+       // alert('nuevo Horarioactividad');
         fetch('/api/horarioactividad', {
             method: 'POST',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
@@ -85,7 +85,7 @@ class HorarioActividadNueva extends React.Component {
 
     render() {
         if (this.state.redirect) {
-            return  window.location=="/lista-horarioactividad" 
+            return  window.location="/lista-horarioactividad" 
         }
         return (
             <div>               

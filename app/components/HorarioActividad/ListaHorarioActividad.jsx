@@ -1,7 +1,7 @@
 const React = require('react');
 const HorarioActividad = require('./HorarioActividad');
 const {Link} = require ('react-router-dom');
-const {Segment,List,Icon,Button,Label,Divider, Container, Table} = require('semantic-ui-react');
+const {Segment,List,Icon,Button,Label,Divider, Container, Table,Step,Grid} = require('semantic-ui-react');
 
 class ListaHorarioActividad extends React.Component {
     constructor(props) {
@@ -14,11 +14,9 @@ class ListaHorarioActividad extends React.Component {
 
         this.onAgendarHorario = this.onAgendarHorario.bind(this);
     }
-    //Para agendar horario
-    onAgendarHorario(idHorarioActividad){
-       
-        console.log('hora: '+idHorarioActividad);
-       
+    //Para agendar horario crea un registro en la tabla ActividadAgendada
+    onAgendarHorario(idHorarioActividad){       
+       // console.log('hora: '+idHorarioActividad);       
         fetch(`/api/actividadagendada/`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -32,7 +30,6 @@ class ListaHorarioActividad extends React.Component {
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             // body: JSON.stringify(data) // body data type must match "Content-Type" header
             body: JSON.stringify({
-
                 idHorarioActividad : idHorarioActividad                     
             })
           })
@@ -45,7 +42,7 @@ class ListaHorarioActividad extends React.Component {
     }
 
     componentDidMount() { 
-        alert('lista HorAct'+this.props.idActividad)  ;     
+      //  alert('lista HorAct'+this.props.idActividad)  ;     
         const url= this.props.idActividad ?`/api/horarioactividad?idActividad=${this.props.idActividad}`:`/api/horarioactividad`;         
         fetch(url)
             .then(res => res.json()).then((data) =>{              
@@ -75,6 +72,7 @@ class ListaHorarioActividad extends React.Component {
                 <Segment inverted textAlign="center">Seleccionar Horario</Segment>                  
                     <div >                                                
                         <Button color='green' inverted  as={Link} to="/lista-horarioactividad">Lista Horarios</Button>
+                        <Button color='red' inverted  as={Link} to="/seguridad/logout">Cerrar Sesion</Button>
                         <Button as={Link} to="/lista-horarioactividad/nuevohorario" floated='right' icon labelPosition='left' primary size='medium'>
                              <Icon name='plus circle' /> Nueva Horario
                         </Button> 
@@ -111,6 +109,41 @@ class ListaHorarioActividad extends React.Component {
                   }
                    </Table.Body>
                 </Table>
+                <Grid size='huge'   style={{ maxWidth: 600 }}>
+          <Step.Group >
+                <Step disabled>
+                <Icon name='user' />
+                <Step.Content>
+                    <Step.Title>Registro</Step.Title>
+                    <Step.Description>de usuario</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step disabled>
+                <Icon name='industry' />
+                <Step.Content>
+                    <Step.Title>Seleccione</Step.Title>
+                    <Step.Description>su proveedor</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step disabled>
+                <Icon name='sort' />
+                <Step.Content>
+                <Step.Title>Seleccione</Step.Title>
+                    <Step.Description>su actividad</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step active>
+                <Icon name='calendar' />
+                <Step.Content>
+                <Step.Title>Confirme</Step.Title>
+                    <Step.Description>fecha</Step.Description>
+                </Step.Content>
+                </Step>
+            </Step.Group>
+          </Grid>       
             </div>      
         );
     }

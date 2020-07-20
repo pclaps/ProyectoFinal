@@ -1,7 +1,7 @@
 const React = require('react');
 const Actividad = require('./Actividad');
 const {Link} = require ('react-router-dom');
-const {Segment,List,Icon,Button,Label,Divider, Container, Table} = require('semantic-ui-react');
+const {Segment,List,Icon,Button,Label,Divider, Container, Table,Step,Grid} = require('semantic-ui-react');
 
 
 
@@ -85,7 +85,8 @@ class ListaActividades extends React.Component {
                                 <Table.HeaderCell>Tipo Actividad</Table.HeaderCell>
                                 <Table.HeaderCell>Cupos</Table.HeaderCell>
                                 <Table.HeaderCell>Imagen</Table.HeaderCell>                                
-                                <Table.HeaderCell>Id Proveedor</Table.HeaderCell>                                
+                                <Table.HeaderCell>Id Proveedor</Table.HeaderCell>   
+                                <Table.HeaderCell>Horarios</Table.HeaderCell>                              
                             </Table.Row>
                         </Table.Header>
                   <Table.Body>
@@ -104,6 +105,41 @@ class ListaActividades extends React.Component {
                     }
                     </Table.Body>
                      </Table>
+                     <Grid size='huge'   style={{ maxWidth: 600 }}>
+          <Step.Group >
+                <Step disabled>
+                <Icon name='user' />
+                <Step.Content>
+                    <Step.Title>Registro</Step.Title>
+                    <Step.Description>de usuario</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step disabled>
+                <Icon name='industry' />
+                <Step.Content>
+                    <Step.Title>Seleccione</Step.Title>
+                    <Step.Description>su proveedor</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step active >
+                <Icon name='sort' />
+                <Step.Content>
+                <Step.Title>Seleccione</Step.Title>
+                    <Step.Description>su actividad</Step.Description>
+                </Step.Content>
+                </Step>
+
+                <Step disabled>
+                <Icon name='calendar' />
+                <Step.Content>
+                <Step.Title>Confirme</Step.Title>
+                    <Step.Description>fecha</Step.Description>
+                </Step.Content>
+                </Step>
+            </Step.Group>
+          </Grid>       
             </div>      
         );
     }

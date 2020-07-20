@@ -12,10 +12,10 @@ class Proveedor extends React.Component {
        <Table.Cell>
           <Button color='green' inverted onClick={()=>this.props.onDeleteProveedor(this.props.idProveedor)}>Borrar</Button></Table.Cell>
        <Table.Cell>
-           <Button color='red' inverted as={Link} to={`/lista-proveedores/proveedor/${this.props.idProveedor}`}>Modificar</Button>                        
+           <Button color='teal' inverted as={Link} to={`/lista-proveedores/proveedor/${this.props.idProveedor}`}>Modificar</Button>                        
        </Table.Cell>   
        <Table.Cell>
-       <a href= {`/lista-actividades/porproveedor/${this.props.idProveedor}`}>Seleccionar Actividades</a>        
+       <a href= {`/lista-actividades/porproveedor/${this.props.idProveedor}`}>Seleccionar Actividad</a>        
        </Table.Cell>
       </React.Fragment>
     );

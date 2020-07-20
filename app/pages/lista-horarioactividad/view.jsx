@@ -4,7 +4,7 @@ const HorarioActividad = require('../../components/HorarioActividad/HorarioActiv
 const HorarioActividadNueva = require('../../components/HorarioActividad/HorarioActividadNueva')
 const ListaHorarioActividad = require('../../components/HorarioActividad/ListaHorarioActividad');
 
-console.log('ListaUsuariosPage-view');
+//console.log('ListaUsuariosPage-view');
 
 class ListaHorarioActividadPage extends React.Component {
     render() {

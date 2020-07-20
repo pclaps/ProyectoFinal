@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Actividad = require('../../models/actividadModel');
-
+const {getSessionUsuario} = require('../../middlewares/autorizacion-handler');
 
 const validateParams = (req, res, next) => {
     if(isNaN(req.params.id)) {

@@ -38,7 +38,6 @@ class ProveedorEditar extends React.Component {
             }
         });
     }
-
     
     handleSubmit(event) {
         event.preventDefault();      
@@ -47,7 +46,7 @@ class ProveedorEditar extends React.Component {
             method: 'PUT',
             headers : { "Content-Type" : "application/json; charset=utf-8"},
             body: JSON.stringify({                
-                idProveedor:this.state.proveedor.idProveedor,
+               //idProveedor:this.state.proveedor.idProveedor,
                 descripcion: this.state.proveedor.descripcion,
                 direccion: this.state.proveedor.direccion,                
             })
@@ -63,7 +62,7 @@ class ProveedorEditar extends React.Component {
   }
 
     componentDidMount() {    
-        alert(this.state.proveedor.idProveedor)          ;
+        //alert(this.state.proveedor.idProveedor)          ;
         fetch(`/api/proveedor/${this.props.id}`, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -90,7 +89,7 @@ class ProveedorEditar extends React.Component {
     render() {        
         const proveedor  = this.state.proveedor;
         if (this.state.redirect) {
-            return <Redirect to="lista-proveedores/" />
+            return <Redirect to="/lista-proveedores" />
         }
         return (
             <div>               
