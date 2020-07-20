@@ -68,7 +68,8 @@ class ListaUsuarios extends React.Component {
         return (
             <div>
                 <Segment inverted textAlign="center">Listado de Usuarios</Segment>                  
-                <div >                                                                    
+                <div >                
+                    <Button color='green' inverted  as={Link} to="/seguridad/login">ir a Login</Button>                                                    
                     <Button as={Link} to="/lista-usuarios/nuevousuario" floated='right' icon labelPosition='left' primary size='medium' >
                         <Icon name='user' /> Nuevo Usuario
                     </Button>                    

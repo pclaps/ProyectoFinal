@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Proveedor = require('../../models/ProveedorModel');
-const {getSessionUsuario} = require('../../middlewares/autorizacion-handler');
+//const {getSessionUsuario} = require('../../middlewares/autorizacion-handler');
 
 
 const validateParams = (req, res, next) => {
@@ -30,9 +30,9 @@ const getProveedores=(req,res)=>{
     })
 };
 
-//router.get('/', getProveedores);
+router.get('/', getProveedores);
 
-router.get('/',getSessionUsuario, getProveedores);
+//router.get('/',getSessionUsuario, getProveedores);
 
 //Obtengo un Tipo de Actividad por ID
 const getProveedorId=(req,res)=>{    

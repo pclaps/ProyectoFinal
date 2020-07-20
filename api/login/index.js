@@ -13,6 +13,7 @@ const validarLogin = (req, res,next) => {
             .then(login => { console.log('resultado Validar login '+ login.success + login.id);                      
             if (req.session.email){
                   console.log('datos del body '+req.session.email);
+                  next();
             }
             else{
                 //asigno la sesion al email conectado

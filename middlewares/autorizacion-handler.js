@@ -13,7 +13,7 @@ const  getSessionUsuario = (req, res, next) => {
     res.redirect('/seguridad/login');
   }
 }
-
+/*
 const  deleteSessionUsuario = (req, res, next) => {
   console.log('getSessionUsuario');
   if(req.session.email){
@@ -25,7 +25,7 @@ const  deleteSessionUsuario = (req, res, next) => {
     console.log('No se pudo borrar sesion');       
   }
 }
-
+*/
 const appAutorizacionHandler = (req, res, next) => {
   //console.log("appAutorizacionHandler");
   //Si esta logueado
@@ -62,6 +62,5 @@ const apiAutorizacionHandler = (req, res, next) => {
 module.exports = { 
     appAutorizacionHandler, 
     apiAutorizacionHandler,
-    getSessionUsuario,
-    deleteSessionUsuario
+    getSessionUsuario
 };
