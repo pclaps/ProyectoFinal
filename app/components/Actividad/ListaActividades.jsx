@@ -42,7 +42,7 @@ class ListaActividades extends React.Component {
     }
     componentDidMount() {        
         const url= this.props.idProveedor ?`/api/actividad?idProveedor=${this.props.idProveedor}`:`/api/actividad`;        
-        console.log(url);
+        //console.log(url);
         fetch(url)
             .then(res => res.json()).then((data) =>{              
             this.setState({
