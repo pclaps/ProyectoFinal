@@ -30,7 +30,7 @@ const getProveedores=(req,res)=>{
     })
 };
 
-router.get('/', getProveedores);
+//router.get('/', getProveedores);
 
 router.get('/',getSessionUsuario, getProveedores);
 
