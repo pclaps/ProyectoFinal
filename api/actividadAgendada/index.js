@@ -51,7 +51,7 @@ const getAllActividadAgendada=(req,res)=>{
 
 router.get('/', getAllActividadAgendada);
 
-const getActividadAgendada=(req,res)=>{    
+const getActividadAgendadaByUsuario=(req,res)=>{    
     const { id } = req.params;     
     ActividadAgendada.getUnaActAgendada(id)
     .then(function(actAgendada){        
@@ -59,11 +59,11 @@ const getActividadAgendada=(req,res)=>{
     })
     .catch(function(err){  
         console.log(err);
-        console.log('ocurrio un error en getActividad');
+        console.log('ocurrio un error en getActividadAgendadaByUsuario');
         res.json(err);
     })
 };
-router.get('/:id', getActividadAgendada);
+router.get('/:id', getActividadAgendadaByUsuario);
 
 const saveActividadAgendada=(req,res)=>{
    // console.log('saveActividadAgendada +email'+ req.session.email+' '+ req.id);

@@ -6,7 +6,11 @@ const {appAutorizacionHandler,getSessionUsuario} = require('../../middlewares/au
 
 const logout=(req, res) => {
     req.session.destroy();
-    res.send("logout success!");
+    //res.send("logout success!");
+    res.status(200).send({
+        success: true,
+        message: "Desconexion Correcta"
+    });
   };
 
 router.get('/',logout);
